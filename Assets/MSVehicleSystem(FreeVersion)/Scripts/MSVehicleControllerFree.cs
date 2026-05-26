@@ -269,8 +269,10 @@ public class MSVehicleControllerFree : MonoBehaviour {
 	public Shader skidMarksShader;
 
 	#region inputs
-	float verticalInput = 0;
-	float horizontalInput = 0;
+
+	public bool isAI = true;
+	public float verticalInput = 0;
+	public float horizontalInput = 0;
 	float mouseXInput = 0;
 	float mouseYInput = 0;
 	float mouseScrollWheelInput = 0;
@@ -976,8 +978,10 @@ public class MSVehicleControllerFree : MonoBehaviour {
 		wheelTDIsGrounded = _wheels.rightRearWheel.wheelCollider.isGrounded;
 		wheelTEIsGrounded = _wheels.leftRearWheel.wheelCollider.isGrounded;
 
-		verticalInput = controls.verticalInput;
-		horizontalInput = controls.horizontalInput;
+		if (!isAI) {
+			verticalInput = controls.verticalInput;
+			horizontalInput = controls.horizontalInput;
+		}
 		mouseXInput = controls.mouseXInput;
 		mouseYInput = controls.mouseYInput;
 		mouseScrollWheelInput = controls.mouseScrollWheelInput;
