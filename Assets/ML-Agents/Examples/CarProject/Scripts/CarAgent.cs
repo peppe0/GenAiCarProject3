@@ -9,10 +9,38 @@ public class CarAgent : Agent
     private MSVehicleControllerFree carController;
     private Rigidbody m_AgentRb;
 
+    // Aggiungi queste variabili per ripristinare la posizione iniziale
+    private Vector3 startingPosition;
+    private Quaternion startingRotation;
+
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
         carController = GetComponent<MSVehicleControllerFree>();
+        
+        // Salviamo la POSIZIONE LOCALE (rispetto al contenitore della pista)
+        startingPosition = transform.localPosition;
+        startingRotation = transform.localRotation;
+    }
+
+    public override void OnEpisodeBegin()
+    {
+        // Questo metodo si avvia ogni volta che chiamiamo EndEpisode()
+        
+        // 1. Fermiamo tutti i vettori e le spinte della macchina
+        m_AgentRb.velocity = Vector3.zero;
+        m_AgentRb.angularVelocity = Vector3.zero;
+
+        // 2. Resettiamo fisicamente la posizione e rotazione LOCALI
+        transform.localPosition = startingPosition;
+        transform.localRotation = startingRotation;
+
+        // 3. Fermiamo gli input bloccati dell'acceleratore passati all'asset vettura
+        if (carController != null)
+        {
+            carController.verticalInput = 0f;
+            carController.horizontalInput = 0f;
+        }
     }
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
@@ -67,14 +95,19 @@ public class CarAgent : Agent
     // Aggiungo la gestione delle collisioni con i Checkpoint o i muri
     private void OnTriggerEnter(Collider other)
     {
+
         if (other.CompareTag("checkpoint"))
         {
-            // Dai un punteggio positivo all'agente quando passa un checkpoint!
+            // Dai un punteggio positivo all'agente quando passa un checkpoint intermedio!
             AddReward(1.0f);
-            
-            // Qui potresti anche decidere di distruggere il checkpoint così non ci passa 2 volte
-            // (oppure gestirli con una logica in sequenza, che è ancora meglio).
             Debug.Log("Checkpoint passato! +1");
+        }
+        else if (other.CompareTag("finish"))
+        {
+            // Premio enorme per la vittoria!
+            AddReward(5.0f);
+            Debug.Log("Vittoria! Traguardo raggiunto!");
+            EndEpisode();
         }
     }
 

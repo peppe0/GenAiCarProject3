@@ -31,6 +31,7 @@ TagManager:
   - purpleGoal
   - tile
   - checkpoint
+  - finish
   layers:
   - Default
   - TransparentFX

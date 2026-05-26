@@ -181,16 +181,6 @@ PrefabInstance:
       objectReference: {fileID: 1552840307}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
-      propertyPath: startingVehicle
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
-        type: 3}
-      propertyPath: vehicles.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
-        type: 3}
       propertyPath: vehicles.Array.data[0]
       value: 
       objectReference: {fileID: 464732539}
@@ -277,99 +267,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1533026931}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &464732540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464732539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BrainParameters:
-    VectorObservationSize: 1
-    NumStackedVectorObservations: 1
-    m_ActionSpec:
-      m_NumContinuousActions: 0
-      BranchSizes: 0300000003000000
-    VectorActionSize: 0300000003000000
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 0
-    hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: My Behavior
-  TeamId: 0
-  m_UseChildSensors: 1
-  m_UseChildActuators: 1
-  m_DeterministicInference: 0
-  m_ObservableAttributeHandling: 0
---- !u!114 &464732541
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464732539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3a5c9d521e5ef4759a8246a07d52221e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DecisionPeriod: 5
-  DecisionStep: 0
-  TakeActionsBetweenDecisions: 1
---- !u!114 &464732542
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464732539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d1c4e0b1822b495aa52bc52839ecb30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_BrainParameters:
-    VectorObservationSize: 1
-    NumStackedVectorObservations: 1
-    m_ActionSpec:
-      m_NumContinuousActions: 0
-      BranchSizes: 0300000003000000
-    VectorActionSize: 0300000003000000
-    VectorActionDescriptions: []
-    VectorActionSpaceType: 0
-    hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
-  m_InferenceDevice: 0
-  m_BehaviorType: 0
-  m_BehaviorName: My Behavior
-  TeamId: 0
-  m_UseChildSensors: 1
-  m_UseChildActuators: 1
-  m_DeterministicInference: 0
-  m_ObservableAttributeHandling: 0
---- !u!114 &464732543
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 464732539}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d7f0114a486214394b99337e7c3a9d0e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agentParameters:
-    maxStep: 0
-  hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
 --- !u!1 &579604283
 GameObject:
   m_ObjectHideFlags: 0
@@ -813,61 +710,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 54242777612978866, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      propertyPath: m_Drag
-      value: 0.001
-      objectReference: {fileID: 0}
-    - target: {fileID: 54242777612978866, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      propertyPath: m_Mass
-      value: 2500
-      objectReference: {fileID: 0}
-    - target: {fileID: 54242777612978866, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      propertyPath: m_ImplicitCom
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 54242777612978866, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      propertyPath: m_Interpolate
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 54242777612978866, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      propertyPath: m_CenterOfMass.x
-      value: -0.000000337
-      objectReference: {fileID: 0}
-    - target: {fileID: 54242777612978866, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      propertyPath: m_CenterOfMass.z
-      value: 0.29
-      objectReference: {fileID: 0}
-    - target: {fileID: 54242777612978866, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      propertyPath: m_CollisionDetection
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1511026439631052, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 464732543}
-    - targetCorrespondingSourceObject: {fileID: 1511026439631052, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 464732542}
-    - targetCorrespondingSourceObject: {fileID: 1511026439631052, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 464732541}
-    - targetCorrespondingSourceObject: {fileID: 1511026439631052, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5,
-        type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 464732540}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9dd24dcb5ff8cc74d9d4fb1ef33d37b5, type: 3}
 --- !u!1 &1552840307 stripped
 GameObject:
