@@ -220,7 +220,11 @@ public class MSSceneControllerFree : MonoBehaviour {
 			//
 			for (int x = 0; x < vehicles.Length; x++) {
 				if (vehicles [x]) {
-					vehicles [x].GetComponent<MSVehicleControllerFree> ().isInsideTheCar = false;
+					// Non azzerare il veicolo di partenza per preservare il valore dall'Inspector
+					MSVehicleControllerFree vController = vehicles [x].GetComponent<MSVehicleControllerFree> ();
+					if (x != startingVehicle && !vController.isAI) {
+						vController.isInsideTheCar = false;
+					}
 				}
 			}
 			playerIsNull = false;
@@ -531,7 +535,10 @@ public class MSSceneControllerFree : MonoBehaviour {
 			if (vehicles [currentVehicle]) {
 				//change vehicle
 				for (int x = 0; x < vehicles.Length; x++) {
-					vehicles [x].GetComponent<MSVehicleControllerFree> ().ExitTheVehicle ();
+					MSVehicleControllerFree vController = vehicles [x].GetComponent<MSVehicleControllerFree> ();
+					if (!vController.isAI) {
+						vController.ExitTheVehicle ();
+					}
 				}
 				vehicles [currentVehicle].GetComponent<MSVehicleControllerFree> ().EnterInVehicle ();
 				vehicleCode = vehicles [currentVehicle].GetComponent<MSVehicleControllerFree> ();

@@ -476,7 +476,7 @@ public class MSVehicleControllerFree : MonoBehaviour {
 	public bool disableVehicle = false;
 	[HideInInspector] 
 	public bool handBrakeTrue;
-	[HideInInspector] 
+	
 	public bool isInsideTheCar;
 
 	MSSceneControllerFree controls;
