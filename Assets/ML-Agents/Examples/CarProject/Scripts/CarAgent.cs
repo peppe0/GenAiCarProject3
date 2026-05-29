@@ -3,21 +3,40 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
+using Unity.MLAgents.Sensors;
 
 public class CarAgent : Agent
 {
     private MSVehicleControllerFree carController;
     private Rigidbody m_AgentRb;
 
-    // Aggiungi queste variabili per ripristinare la posizione iniziale
     private Vector3 startingPosition;
     private Quaternion startingRotation;
+    
+    [Header("Checkpoint System")]
+    public List<Transform> checkpoints;
+
+    [Header("Reward Tuning")]
+    public float checkpointReward = 1.0f;
+    public float finishReward = 5.0f;
+    public float wallPenalty = -1.0f;
+    public float timePenalty = -0.001f;       
+    public float wrongCheckpointPenalty = -0.5f; 
+
+    private int nextCheckpointIndex;
+
 
     public override void Initialize()
     {
         m_AgentRb = GetComponent<Rigidbody>();
         carController = GetComponent<MSVehicleControllerFree>();
         
+        if (m_AgentRb == null)
+        Debug.LogError($"❌ MANCA Rigidbody su {gameObject.name}!", this);
+    if (carController == null)
+        Debug.LogError($"❌ MANCA MSVehicleControllerFree su {gameObject.name}!", this);
+    if (checkpoints == null || checkpoints.Count == 0)
+        Debug.LogError($"❌ Lista CHECKPOINT vuota su {gameObject.name}!", this);
         // Salviamo la POSIZIONE LOCALE (rispetto al contenitore della pista)
         startingPosition = transform.localPosition;
         startingRotation = transform.localRotation;
@@ -41,7 +60,38 @@ public class CarAgent : Agent
             carController.verticalInput = 0f;
             carController.horizontalInput = 0f;
         }
+         nextCheckpointIndex = 0;
     }
+    
+    public override void CollectObservations(VectorSensor sensor)
+    {
+        // 1. Direzione verso il prossimo checkpoint (vettore locale, 3 float)
+        if (checkpoints != null && checkpoints.Count > 0 && nextCheckpointIndex < checkpoints.Count)
+        {
+            Vector3 dirToCheckpoint = (checkpoints[nextCheckpointIndex].position - transform.position).normalized;
+            Vector3 localDir = transform.InverseTransformDirection(dirToCheckpoint);
+            sensor.AddObservation(localDir); // 3 valori
+        }
+        else
+        {
+            sensor.AddObservation(Vector3.zero); // 3 valori placeholder
+        }
+        // 2. Velocità locale della macchina (3 float)
+        Vector3 localVelocity = transform.InverseTransformDirection(m_AgentRb.velocity);
+        sensor.AddObservation(localVelocity); // 3 valori
+        // 3. Distanza dal prossimo checkpoint (1 float)
+        if (checkpoints != null && checkpoints.Count > 0 && nextCheckpointIndex < checkpoints.Count)
+        {
+            float dist = Vector3.Distance(transform.position, checkpoints[nextCheckpointIndex].position);
+            sensor.AddObservation(dist / 50f); // normalizzato (adatta 50 alla dimensione del circuito)
+        }
+        else
+        {
+            sensor.AddObservation(0f);
+        }
+        // Totale: 7 osservazioni → imposta "Vector Observation Space Size = 7"
+    }
+
 
     public override void OnActionReceived(ActionBuffers actionBuffers)
     {
@@ -74,6 +124,7 @@ public class CarAgent : Agent
             carController.verticalInput = accInput;
             carController.horizontalInput = steerInput;
         }
+         AddReward(timePenalty);
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -93,30 +144,48 @@ public class CarAgent : Agent
     }
 
     // Aggiungo la gestione delle collisioni con i Checkpoint o i muri
-    private void OnTriggerEnter(Collider other)
+  private void OnTriggerEnter(Collider other)
+{
+    if (other.CompareTag("finish"))
     {
-
-        if (other.CompareTag("checkpoint"))
+        // Il traguardo funziona indipendentemente dalla lista checkpoint
+        // Opzionale: dare reward solo se ha passato TUTTI i checkpoint
+        if (nextCheckpointIndex >= checkpoints.Count)
         {
-            // Dai un punteggio positivo all'agente quando passa un checkpoint intermedio!
-            AddReward(1.0f);
-            Debug.Log("Checkpoint passato! +1");
+            AddReward(finishReward);
+            Debug.Log("🏁 Vittoria! Tutti i checkpoint superati + traguardo!");
         }
-        else if (other.CompareTag("finish"))
+        else
         {
-            // Premio enorme per la vittoria!
-            AddReward(5.0f);
-            Debug.Log("Vittoria! Traguardo raggiunto!");
-            EndEpisode();
+            // Ha raggiunto il traguardo saltando dei checkpoint
+            AddReward(finishReward * 0.5f); // premio ridotto
+            Debug.Log($"🏁 Traguardo raggiunto ma mancano {checkpoints.Count - nextCheckpointIndex} checkpoint.");
+        }
+        EndEpisode();
+    }
+    else if (other.CompareTag("checkpoint"))
+    {
+        int triggeredIndex = checkpoints.FindIndex(cp => cp == other.transform);
+        
+        if (triggeredIndex == nextCheckpointIndex)
+        {
+            AddReward(checkpointReward);
+            Debug.Log($"✅ Checkpoint {nextCheckpointIndex} superato!");
+            nextCheckpointIndex++;
+        }
+        else if (triggeredIndex >= 0 && triggeredIndex < nextCheckpointIndex)
+        {
+            AddReward(wrongCheckpointPenalty);
+            Debug.Log($"⚠️ Checkpoint {triggeredIndex} già superato!");
         }
     }
-
+}
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("wall"))
         {
             // Se sbatte contro un muro, diamo una penalità fortissima e terminiamo l'episodio (Ricomincia daccapo).
-            AddReward(-1.0f);
+            AddReward(wallPenalty);
             Debug.Log("Hai sbattuto contro il muro! Episodio terminato.");
             EndEpisode();
         }
