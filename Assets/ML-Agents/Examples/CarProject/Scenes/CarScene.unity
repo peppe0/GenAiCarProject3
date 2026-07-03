@@ -2076,7 +2076,22 @@ MonoBehaviour:
   - {fileID: 490245407}
   _cameras:
     setLayers: 1
-    cameras: []
+    cameras:
+    - _camera: {fileID: 1625773381}
+      rotationType: 2
+      volume: 1
+    - _camera: {fileID: 277264225}
+      rotationType: 3
+      volume: 1
+    - _camera: {fileID: 1020767697}
+      rotationType: 1
+      volume: 1
+    - _camera: {fileID: 954458531}
+      rotationType: 5
+      volume: 1
+    - _camera: {fileID: 551160177}
+      rotationType: 5
+      volume: 1
     cameraSettings:
       near: 0.03
       impactTremor: 0.1
