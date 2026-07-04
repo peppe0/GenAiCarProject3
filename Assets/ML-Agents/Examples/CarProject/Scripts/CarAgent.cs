@@ -57,6 +57,26 @@ private float targetLapTime;
         Debug.LogError($"❌ MANCA MSVehicleControllerFree su {gameObject.name}!", this);
     if (checkpoints == null || checkpoints.Count == 0)
         Debug.LogError($"❌ Lista CHECKPOINT vuota su {gameObject.name}!", this);
+
+        if (spawnPoints != null)
+        {
+            for (int i = spawnPoints.Count - 1; i >= 0; i--)
+            {
+                if (spawnPoints[i].point == null)
+                {
+                    Debug.LogError($"❌ SpawnPoint[{i}] su {gameObject.name} non ha un Transform assegnato in 'Point'! Rimosso dalla lista.", this);
+                    spawnPoints.RemoveAt(i);
+                }
+            }
+        }
+        if (checkpoints != null)
+        {
+            for (int i = 0; i < checkpoints.Count; i++)
+            {
+                if (checkpoints[i] == null)
+                    Debug.LogError($"❌ Checkpoints[{i}] su {gameObject.name} non ha un Transform assegnato!", this);
+            }
+        }
         // Salviamo la POSIZIONE LOCALE (rispetto al contenitore della pista)
         startingPosition = transform.localPosition;
         startingRotation = transform.localRotation;
