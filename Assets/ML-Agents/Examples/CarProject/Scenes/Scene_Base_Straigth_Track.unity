@@ -122,11 +122,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &115127734 stripped
+--- !u!1 &137317710 stripped
 GameObject:
-  m_CorrespondingSourceObject: {fileID: 5240749962571462129, guid: e196605aa6aab44df861a7fdc8d29e66,
+  m_CorrespondingSourceObject: {fileID: 8620452312882203784, guid: c4089e1d4b9ed478680f5526a07a15a4,
     type: 3}
-  m_PrefabInstance: {fileID: 7482222251193879952}
+  m_PrefabInstance: {fileID: 1748526398}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &217104739 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8620452312882203784, guid: c4089e1d4b9ed478680f5526a07a15a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 598873782}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &419007262 stripped
 GameObject:
@@ -344,6 +350,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4089e1d4b9ed478680f5526a07a15a4, type: 3}
+--- !u!1 &1240232193 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8620452312882203784, guid: c4089e1d4b9ed478680f5526a07a15a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1927532503}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1247463066 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8620452312882203784, guid: c4089e1d4b9ed478680f5526a07a15a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 545085820}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1372812245
 GameObject:
   m_ObjectHideFlags: 0
@@ -574,6 +592,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c4089e1d4b9ed478680f5526a07a15a4, type: 3}
+--- !u!1 &1861112953 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8620452312882203784, guid: c4089e1d4b9ed478680f5526a07a15a4,
+    type: 3}
+  m_PrefabInstance: {fileID: 1096247021}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1927532503
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -799,43 +823,43 @@ PrefabInstance:
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.size
-      value: 3
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[0]
       value: 
-      objectReference: {fileID: 115127734}
+      objectReference: {fileID: 845647725}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[1]
       value: 
-      objectReference: {fileID: 845647725}
+      objectReference: {fileID: 419007262}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[2]
       value: 
-      objectReference: {fileID: 419007262}
+      objectReference: {fileID: 1240232193}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1861112953}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[4]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1247463066}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[5]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 137317710}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[6]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 217104739}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[7]

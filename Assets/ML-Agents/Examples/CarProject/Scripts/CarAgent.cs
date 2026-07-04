@@ -32,6 +32,12 @@ private float targetLapTime;
     public float lateralNoise = 1f;      // metri
     public float rotationNoiseDegrees = 8f; // gradi
 
+    [Header("Testing Spawn (Fixed)")]
+    [Tooltip("Se attivo, disabilita la scelta casuale e il rumore: la macchina parte SEMPRE dallo spawn point indicato in 'Fixed Spawn Index'. Usare per il testing del circuito.")]
+    public bool useFixedSpawn = false;
+    [Tooltip("Indice dello spawn point (nella lista 'Spawn Points') da usare quando 'Use Fixed Spawn' è attivo.")]
+    public int fixedSpawnIndex = 0;
+
 
 
     [Header("Reward Tuning")]
@@ -89,11 +95,27 @@ private float targetLapTime;
 
     if (spawnPoints != null && spawnPoints.Count > 0)
     {
-        var chosen = spawnPoints[Random.Range(0, spawnPoints.Count)];
+        SpawnPoint chosen;
+        Vector3 lateralOffset;
+        Quaternion yawNoise;
 
-        // Rumore laterale, calcolato nel sistema locale del punto di spawn
-        Vector3 lateralOffset = chosen.point.localRotation * Vector3.right * Random.Range(-lateralNoise, lateralNoise);
-        Quaternion yawNoise = Quaternion.Euler(0f, Random.Range(-rotationNoiseDegrees, rotationNoiseDegrees), 0f);
+        if (useFixedSpawn)
+        {
+            // Modalità TESTING: spawn fisso, nessuna casualità, nessun rumore.
+            int index = Mathf.Clamp(fixedSpawnIndex, 0, spawnPoints.Count - 1);
+            if (index != fixedSpawnIndex)
+                Debug.LogWarning($"⚠️ Fixed Spawn Index {fixedSpawnIndex} fuori range su {gameObject.name}. Uso l'indice {index}.", this);
+            chosen = spawnPoints[index];
+            lateralOffset = Vector3.zero;
+            yawNoise = Quaternion.identity;
+        }
+        else
+        {
+            // Modalità TRAINING: spawn casuale con rumore.
+            chosen = spawnPoints[Random.Range(0, spawnPoints.Count)];
+            lateralOffset = chosen.point.localRotation * Vector3.right * Random.Range(-lateralNoise, lateralNoise);
+            yawNoise = Quaternion.Euler(0f, Random.Range(-rotationNoiseDegrees, rotationNoiseDegrees), 0f);
+        }
 
         transform.localPosition = chosen.point.localPosition + lateralOffset;
         transform.localRotation = chosen.point.localRotation * yawNoise;
