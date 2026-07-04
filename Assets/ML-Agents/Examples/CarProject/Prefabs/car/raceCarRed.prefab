@@ -627,7 +627,7 @@ MonoBehaviour:
         invertRotationJoystick: 1
   _vehicleTorque:
     maxVelocityKMh: 180
-    engineTorque: 14
+    engineTorque: 28
     numberOfGears: 6
     speedOfGear: 1.8
     manualAdjustmentOfTorques:
@@ -1033,7 +1033,7 @@ MonoBehaviour:
     maxVelocityGears: 1e0000002d0000003c0000004b0000005a00000069000000780000008700000096000000a5000000b4000000c3000000
   _vehicleSettings:
     startOn: 1
-    vehicleMass: 1200
+    vehicleMass: 1000
     improveControl:
       tireSlipsFactor: 1.05
       helpToTurn: 0.15
@@ -1148,7 +1148,7 @@ MonoBehaviour:
   currentGear: 0
   disableVehicle: 0
   handBrakeTrue: 0
-  isInsideTheCar: 1
+  isInsideTheCar: 0
 --- !u!114 &8611258825540845534
 MonoBehaviour:
   m_ObjectHideFlags: 0

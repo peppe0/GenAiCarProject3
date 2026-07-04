@@ -465,7 +465,7 @@ GameObject:
   - component: {fileID: 1791307318714343103}
   m_Layer: 0
   m_Name: End_checkpoint 1
-  m_TagString: finish
+  m_TagString: checkpoint
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1044,7 +1044,7 @@ GameObject:
   - component: {fileID: 7573123638679565210}
   m_Layer: 0
   m_Name: Start_checkpoint1
-  m_TagString: checkpoint
+  m_TagString: finish
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2483,37 +2483,37 @@ PrefabInstance:
         type: 3}
       propertyPath: checkpoints.Array.data[0]
       value: 
-      objectReference: {fileID: 6682331446902097094}
+      objectReference: {fileID: 8595599982089899764}
     - target: {fileID: 8611258825540845534, guid: dbf1dddc01de547d19e84adac9ca7064,
         type: 3}
       propertyPath: checkpoints.Array.data[1]
       value: 
-      objectReference: {fileID: 8595599982089899764}
+      objectReference: {fileID: 4333712348844589738}
     - target: {fileID: 8611258825540845534, guid: dbf1dddc01de547d19e84adac9ca7064,
         type: 3}
       propertyPath: checkpoints.Array.data[2]
       value: 
-      objectReference: {fileID: 4333712348844589738}
+      objectReference: {fileID: 6850522024731623526}
     - target: {fileID: 8611258825540845534, guid: dbf1dddc01de547d19e84adac9ca7064,
         type: 3}
       propertyPath: checkpoints.Array.data[3]
       value: 
-      objectReference: {fileID: 6850522024731623526}
+      objectReference: {fileID: 3231112996808608758}
     - target: {fileID: 8611258825540845534, guid: dbf1dddc01de547d19e84adac9ca7064,
         type: 3}
       propertyPath: checkpoints.Array.data[4]
       value: 
-      objectReference: {fileID: 3231112996808608758}
+      objectReference: {fileID: 1082174679039519942}
     - target: {fileID: 8611258825540845534, guid: dbf1dddc01de547d19e84adac9ca7064,
         type: 3}
       propertyPath: checkpoints.Array.data[5]
       value: 
-      objectReference: {fileID: 1082174679039519942}
+      objectReference: {fileID: 2467729260128400034}
     - target: {fileID: 8611258825540845534, guid: dbf1dddc01de547d19e84adac9ca7064,
         type: 3}
       propertyPath: checkpoints.Array.data[6]
       value: 
-      objectReference: {fileID: 2467729260128400034}
+      objectReference: {fileID: 307854707550862909}
     - target: {fileID: 8611258825540845534, guid: dbf1dddc01de547d19e84adac9ca7064,
         type: 3}
       propertyPath: checkpoints.Array.data[7]
