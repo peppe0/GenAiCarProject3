@@ -1036,12 +1036,12 @@ MonoBehaviour:
     vehicleMass: 1200
     improveControl:
       tireSlipsFactor: 1.05
-      helpToTurn: 0.5
+      helpToTurn: 0.15
       helpToStraightenOut: 0.1
-      downForce: 4
+      downForce: 5
     _aerodynamics:
       extraGravity: 1
-      feelingHeavy: 1
+      feelingHeavy: 7
       downForceAngleFactor: 0.2
       verticalDownForce: 1
       minDownForceValue: 2
@@ -1126,7 +1126,7 @@ MonoBehaviour:
       forwardSkid: 0
       sidewaysSkid: 0
   _sounds:
-    speedOfEngineSound: 3.5
+    speedOfEngineSound: 2.43
     engineSound: {fileID: 8300000, guid: ea2f6284fb2d5a44784c012c3c786f87, type: 3}
     skiddingSound:
       standardSound: {fileID: 8300000, guid: 034580176483184419f3393bf1cefbbb, type: 3}
@@ -1134,7 +1134,7 @@ MonoBehaviour:
     collisionSounds:
     - {fileID: 8300000, guid: 3bd32420e10f29441a631f1ef300d8ae, type: 3}
     - {fileID: 8300000, guid: e19b158a41d5aab4bbdd9699b7339dc4, type: 3}
-    volumeCollisionSounds: 0.5
+    volumeCollisionSounds: 0.278
     wheelImpactSound: {fileID: 8300000, guid: a99ada3784fb7154da6bd9979d56d23a, type: 3}
   _skidMarks:
     standardBrandWidth: 0.4
@@ -1753,7 +1753,7 @@ Transform:
   m_GameObject: {fileID: 3402753486210856795}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.21, z: 0}
+  m_LocalPosition: {x: 0, y: -0.35, z: 0}
   m_LocalScale: {x: 0.53405863, y: 0.53405875, z: 0.53405863}
   m_ConstrainProportionsScale: 0
   m_Children: []
