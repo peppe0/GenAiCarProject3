@@ -15,7 +15,6 @@ public class CarAgent : Agent
     private Vector3 startingPosition;
     private Quaternion startingRotation;
     private float episodeStartTime;
-private float targetLapTime;
 
     [Header("Checkpoint System")]
     public List<Transform> checkpoints;
@@ -32,6 +31,10 @@ private float targetLapTime;
     public float lateralNoise = 1f;      // metri
     public float rotationNoiseDegrees = 8f; // gradi
 
+    [Header("Circuit Type")]
+    [Tooltip("Attiva per circuiti CHIUSI dove la partenza e il traguardo sono la stessa linea. Il traguardo conta SOLO dopo aver superato tutti i checkpoint, così l'attraversamento iniziale alla partenza viene ignorato.")]
+    public bool isClosedCircuit = false;
+
     [Header("Testing Spawn (Fixed)")]
     [Tooltip("Se attivo, disabilita la scelta casuale e il rumore: la macchina parte SEMPRE dallo spawn point indicato in 'Fixed Spawn Index'. Usare per il testing del circuito.")]
     public bool useFixedSpawn = false;
@@ -45,8 +48,10 @@ private float targetLapTime;
     public float finishReward = 5.0f;
     public float wallPenalty = -1.0f;
     public float timePenalty = -0.001f;       
-    public float wrongCheckpointPenalty = -0.5f; 
-    public float speedTowardCheckpointFactor = 0.01f; 
+    public float wrongCheckpointPenalty = -0.5f;
+    public float speedTowardCheckpointFactor = 0.01f;
+    [Tooltip("Tempo di riferimento (in secondi) per un giro 'decente'. Un lap più veloce di questo dà bonus (>1x), più lento dà malus (<1x), con clamp a 0.5x-2x.")]
+    public float targetLapTime = 25f;
 
 
     private int nextCheckpointIndex;
@@ -207,9 +212,18 @@ private float targetLapTime;
 {
     if (other.CompareTag("finish"))
     {
-          bool success = nextCheckpointIndex >= checkpoints.Count;
-         float lapTime = Time.time - episodeStartTime;
-        // Il traguardo funziona indipendentemente dalla lista checkpoint
+        bool success = nextCheckpointIndex >= checkpoints.Count;
+
+        // Circuito CHIUSO: la linea start/traguardo va ignorata finché non ho
+        // superato tutti i checkpoint. Così l'attraversamento iniziale alla
+        // partenza (e ogni ri-attraversamento a giro incompleto) non conta.
+        if (isClosedCircuit && !success)
+        {
+            Debug.Log($"⏱️ Traguardo attraversato ma giro INCOMPLETO: {nextCheckpointIndex}/{checkpoints.Count} checkpoint superati. Ignorato (isClosedCircuit).");
+            return;
+        }
+
+        float lapTime = Time.time - episodeStartTime;
         // Opzionale: dare reward solo se ha passato TUTTI i checkpoint
 
         Academy.Instance.StatsRecorder.Add("Car/Success", success ? 1f : 0f);
