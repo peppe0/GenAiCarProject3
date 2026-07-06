@@ -114,6 +114,7 @@ public class CarAgent : Agent
     if (!isFirstEpisode && !episodeResolved)
     {
         LogEpisodeStats(false, false, true);
+        Debug.Log($"⏱️ TIMEOUT: episodio scaduto ({MaxStep} step MaxStep) senza completare il giro. Checkpoint superati: {checkpointsPassedThisEpisode}. Episodio riavviato.");
     }
     isFirstEpisode = false;
     episodeResolved = false;
@@ -253,6 +254,17 @@ public class CarAgent : Agent
     // ---- PRIMO checkpoint incontrato: diventa il RIFERIMENTO e avvia il giro ----
     if (!lapStarted)
     {
+        // Il giro può partire SOLO toccando il checkpoint ATTESO (quello davanti,
+        // impostato dallo spawn). Altrimenti la macchina imparerebbe a fare
+        // retromarcia per agganciare un checkpoint dietro di sé e prendersi il
+        // reward: toccarne uno fuori sequenza qui viene penalizzato, non premiato.
+        if (triggeredIndex != nextCheckpointIndex)
+        {
+            AddReward(wrongCheckpointPenalty);
+            Debug.Log($"⚠️ Checkpoint {triggeredIndex} toccato prima di avviare il giro (atteso {nextCheckpointIndex}). Ignorato.");
+            return;
+        }
+
         referenceIndex = triggeredIndex;
         lapStarted = true;
         lapStartTime = Time.time;
