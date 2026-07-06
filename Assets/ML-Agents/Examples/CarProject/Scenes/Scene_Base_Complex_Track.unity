@@ -701,7 +701,7 @@ PrefabInstance:
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: startingVehicle
-      value: 9
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
@@ -1030,6 +1030,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8117080975155184948, guid: 76b67d005d2114544ade646bae6efd09,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8947953214274760973, guid: 76b67d005d2114544ade646bae6efd09,
         type: 3}
       propertyPath: m_Name

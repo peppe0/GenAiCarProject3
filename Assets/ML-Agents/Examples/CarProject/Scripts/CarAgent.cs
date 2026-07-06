@@ -14,7 +14,6 @@ public class CarAgent : Agent
 
     private Vector3 startingPosition;
     private Quaternion startingRotation;
-    private float episodeStartTime;
 
     [Header("Checkpoint System")]
     public List<Transform> checkpoints;
@@ -30,10 +29,6 @@ public class CarAgent : Agent
     public List<SpawnPoint> spawnPoints;
     public float lateralNoise = 1f;      // metri
     public float rotationNoiseDegrees = 8f; // gradi
-
-    [Header("Circuit Type")]
-    [Tooltip("Attiva per circuiti CHIUSI dove la partenza e il traguardo sono la stessa linea. Il traguardo conta SOLO dopo aver superato tutti i checkpoint, così l'attraversamento iniziale alla partenza viene ignorato.")]
-    public bool isClosedCircuit = false;
 
     [Header("Testing Spawn (Fixed)")]
     [Tooltip("Se attivo, disabilita la scelta casuale e il rumore: la macchina parte SEMPRE dallo spawn point indicato in 'Fixed Spawn Index'. Usare per il testing del circuito.")]
@@ -55,6 +50,19 @@ public class CarAgent : Agent
 
 
     private int nextCheckpointIndex;
+
+    // Stato per rilevare il TIMEOUT: episodio scaduto per MaxStep senza traguardo
+    // né schianto. Senza questo, quegli episodi non verrebbero contati nelle metriche.
+    private bool episodeResolved = false;
+    private bool isFirstEpisode = true;
+
+    // Cronometraggio "giro lanciato": il tempo parte quando la macchina incontra
+    // il PRIMO checkpoint (che diventa il riferimento di quel giro) e si chiude
+    // quando ci ritorna dopo aver percorso tutti gli altri in ordine.
+    private bool lapStarted = false;
+    private float lapStartTime;
+    private int referenceIndex = -1; // checkpoint di riferimento, scelto a runtime
+    private int checkpointsPassedThisEpisode = 0; // conteggio reale (per la metrica)
 
 
     public override void Initialize()
@@ -91,10 +99,25 @@ public class CarAgent : Agent
         // Salviamo la POSIZIONE LOCALE (rispetto al contenitore della pista)
         startingPosition = transform.localPosition;
         startingRotation = transform.localRotation;
+
+        // Evita episodi infiniti: se l'auto si blocca (ribaltata, incastrata in
+        // salita, caduta), l'episodio scade dopo MaxStep step invece di congelare
+        // il training. Se hai già impostato MaxStep nell'Inspector, viene rispettato.
+        if (MaxStep == 0) MaxStep = 3000;
     }
 
    public override void OnEpisodeBegin()
 {
+    // Se l'episodio PRECEDENTE non è stato risolto (né traguardo né muro), è
+    // scaduto per MaxStep: lo registriamo come timeout, altrimenti sparirebbe
+    // dalle metriche e gonfierebbe il success rate.
+    if (!isFirstEpisode && !episodeResolved)
+    {
+        LogEpisodeStats(false, false, true);
+    }
+    isFirstEpisode = false;
+    episodeResolved = false;
+
     m_AgentRb.velocity = Vector3.zero;
     m_AgentRb.angularVelocity = Vector3.zero;
 
@@ -140,8 +163,14 @@ public class CarAgent : Agent
         carController.verticalInput = 0f;
         carController.horizontalInput = 0f;
     }
+
+    // Nuovo episodio: il giro cronometrato non è ancora iniziato. Partirà quando
+    // la macchina incontrerà il primo checkpoint (che diventa il riferimento).
+    lapStarted = false;
+    referenceIndex = -1;
+    checkpointsPassedThisEpisode = 0;
 }
-    
+
     public override void CollectObservations(VectorSensor sensor)
     {
         // 1. Direzione verso il prossimo checkpoint (vettore locale, 3 float)
@@ -183,9 +212,13 @@ public class CarAgent : Agent
         carController.horizontalInput = steerInput;
     }
     
-    if (checkpoints != null && checkpoints.Count > 0 && nextCheckpointIndex < checkpoints.Count)
+    if (checkpoints != null && checkpoints.Count > 0)
     {
-        Vector3 dirToCheckpoint = (checkpoints[nextCheckpointIndex].position - transform.position).normalized;
+        // Reward denso: premia l'avvicinarsi al prossimo checkpoint atteso.
+        // Quando il giro sta per chiudersi, il prossimo atteso è il checkpoint di
+        // riferimento, quindi questo guida naturalmente anche il tratto finale.
+        int idx = nextCheckpointIndex % checkpoints.Count;
+        Vector3 dirToCheckpoint = (checkpoints[idx].position - transform.position).normalized;
         float velocityTowardCheckpoint = Vector3.Dot(m_AgentRb.velocity, dirToCheckpoint);
         AddReward(speedTowardCheckpointFactor * velocityTowardCheckpoint);
     }
@@ -210,76 +243,84 @@ public class CarAgent : Agent
     // Aggiungo la gestione delle collisioni con i Checkpoint o i muri
   private void OnTriggerEnter(Collider other)
 {
-    if (other.CompareTag("finish"))
+    // Guardia: servono almeno 2 checkpoint (il riferimento + un intermedio).
+    if (checkpoints == null || checkpoints.Count == 0) return;
+    if (!other.CompareTag("checkpoint")) return;
+
+    int triggeredIndex = checkpoints.FindIndex(cp => cp == other.transform);
+    if (triggeredIndex < 0) return; // non è uno dei nostri checkpoint
+
+    // ---- PRIMO checkpoint incontrato: diventa il RIFERIMENTO e avvia il giro ----
+    if (!lapStarted)
     {
-        bool success = nextCheckpointIndex >= checkpoints.Count;
+        referenceIndex = triggeredIndex;
+        lapStarted = true;
+        lapStartTime = Time.time;
+        nextCheckpointIndex = (triggeredIndex + 1) % checkpoints.Count;
+        checkpointsPassedThisEpisode = 1; // il riferimento è il primo checkpoint superato
+        AddReward(checkpointReward);
+        Debug.Log($"🟢 Giro AVVIATO (riferimento = checkpoint {referenceIndex}).");
+        return;
+    }
 
-        // Circuito CHIUSO: la linea start/traguardo va ignorata finché non ho
-        // superato tutti i checkpoint. Così l'attraversamento iniziale alla
-        // partenza (e ogni ri-attraversamento a giro incompleto) non conta.
-        if (isClosedCircuit && !success)
+    // ---- Giro in corso: i checkpoint vanno presi nell'ordine atteso ----
+    if (triggeredIndex == nextCheckpointIndex)
+    {
+        if (triggeredIndex == referenceIndex)
         {
-            Debug.Log($"⏱️ Traguardo attraversato ma giro INCOMPLETO: {nextCheckpointIndex}/{checkpoints.Count} checkpoint superati. Ignorato (isClosedCircuit).");
-            return;
-        }
-
-        float lapTime = Time.time - episodeStartTime;
-        // Opzionale: dare reward solo se ha passato TUTTI i checkpoint
-
-        Academy.Instance.StatsRecorder.Add("Car/Success", success ? 1f : 0f);
-        Academy.Instance.StatsRecorder.Add("Car/CheckpointsPassed", nextCheckpointIndex);
-        Academy.Instance.StatsRecorder.Add("Car/LapTime", lapTime);
-
-        if (success)
-        {
+            // Tornato al riferimento dopo aver percorso TUTTI gli altri in ordine
+            // → GIRO COMPLETO. Tempo pulito (loop intero), indipendente dallo spawn.
+            float lapTime = Time.time - lapStartTime;
             float timeBonus = Mathf.Clamp(targetLapTime / lapTime, 0.5f, 2f);
             AddReward(finishReward * timeBonus);
-            Debug.Log("🏁 Vittoria! Tutti i checkpoint superati + traguardo!");
+
+            LogEpisodeStats(true, false, false);
+            Academy.Instance.StatsRecorder.Add("Car/LapTime", lapTime);
+            Debug.Log($"🏁 Giro COMPLETATO in {lapTime:F2}s (bonus x{timeBonus:F2})!");
+
+            episodeResolved = true;
+            EndEpisode();
         }
         else
         {
-            // Ha raggiunto il traguardo saltando dei checkpoint
-            AddReward(finishReward * 0.5f); // premio ridotto
-            Debug.Log($"🏁 Traguardo raggiunto ma mancano {checkpoints.Count - nextCheckpointIndex} checkpoint.");
-        }
-        EndEpisode();
-    }
-    else if (other.CompareTag("checkpoint"))
-    {
-        int triggeredIndex = checkpoints.FindIndex(cp => cp == other.transform);
-        
-        if (triggeredIndex == nextCheckpointIndex)
-        {
             AddReward(checkpointReward);
-            Debug.Log($"✅ Checkpoint {nextCheckpointIndex} superato!");
-            nextCheckpointIndex++;
+            checkpointsPassedThisEpisode++;
+            Debug.Log($"✅ Checkpoint {triggeredIndex} superato!");
+            nextCheckpointIndex = (nextCheckpointIndex + 1) % checkpoints.Count;
         }
-        else if (triggeredIndex >= 0 && triggeredIndex < nextCheckpointIndex)
-        {
-            AddReward(wrongCheckpointPenalty);
-            Debug.Log($"⚠️ Checkpoint {triggeredIndex} già superato!");
-        }
-        else if (triggeredIndex > nextCheckpointIndex)
-        {
-            AddReward(wrongCheckpointPenalty);
-            Debug.Log($"⚠️ Ha saltato i checkpoint da {nextCheckpointIndex} a {triggeredIndex - 1}!");
-            nextCheckpointIndex = triggeredIndex + 1;
-        }
+    }
+    else
+    {
+        // Ordine sbagliato (saltato o già passato): penalità, indice invariato.
+        // Impedisce il reward hacking da scorciatoia: non si avanza saltando.
+        AddReward(wrongCheckpointPenalty);
+        Debug.Log($"⚠️ Checkpoint {triggeredIndex} fuori sequenza (atteso {nextCheckpointIndex}). Non conta.");
     }
 }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("wall"))
         {
+            // Registra l'esito: schianto contro il muro.
+            LogEpisodeStats(false, true, false);
 
-             Academy.Instance.StatsRecorder.Add("Car/Success", 0f);
-             Academy.Instance.StatsRecorder.Add("Car/CheckpointsPassed", nextCheckpointIndex);
-             Academy.Instance.StatsRecorder.Add("Car/WallCrash", 1f);
-
-            // Se sbatte contro un muro, diamo una penalità fortissima e terminiamo l'episodio (Ricomincia daccapo).
+            // Penalità e fine episodio.
             AddReward(wallPenalty);
             Debug.Log("Hai sbattuto contro il muro! Episodio terminato.");
+            episodeResolved = true;
             EndEpisode();
         }
+    }
+
+    // Registra le metriche di fine episodio come TASSI (0/1): così la media su
+    // TensorBoard è direttamente la percentuale di successi/schianti/timeout.
+    // Va chiamato una volta per OGNI episodio concluso, in qualunque modo finisca.
+    private void LogEpisodeStats(bool success, bool crash, bool timeout)
+    {
+        var stats = Academy.Instance.StatsRecorder;
+        stats.Add("Car/Success", success ? 1f : 0f);
+        stats.Add("Car/WallCrash", crash ? 1f : 0f);
+        stats.Add("Car/Timeout", timeout ? 1f : 0f);
+        stats.Add("Car/CheckpointsPassed", checkpointsPassedThisEpisode);
     }
 }
