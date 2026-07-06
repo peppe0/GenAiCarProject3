@@ -103,7 +103,7 @@ public class CarAgent : Agent
         // Evita episodi infiniti: se l'auto si blocca (ribaltata, incastrata in
         // salita, caduta), l'episodio scade dopo MaxStep step invece di congelare
         // il training. Se hai già impostato MaxStep nell'Inspector, viene rispettato.
-        if (MaxStep == 0) MaxStep = 3000;
+        if (MaxStep == 0) MaxStep = 9000;
     }
 
    public override void OnEpisodeBegin()
