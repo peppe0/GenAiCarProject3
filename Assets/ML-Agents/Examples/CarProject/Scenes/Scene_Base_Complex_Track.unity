@@ -743,7 +743,7 @@ PrefabInstance:
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: startingVehicle
-      value: 2
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
@@ -1234,8 +1234,8 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2489944407118408654, guid: 3352b897142eb413281e160597648628,
         type: 3}
-      propertyPath: isInsideTheCar
-      value: 0
+      propertyPath: _vehicleSettings.vehicleMass
+      value: 1200
       objectReference: {fileID: 0}
     - target: {fileID: 4552609437254513649, guid: 3352b897142eb413281e160597648628,
         type: 3}

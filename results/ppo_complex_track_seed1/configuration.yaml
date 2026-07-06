@@ -14,14 +14,14 @@ behaviors:
       learning_rate_schedule: linear
       beta_schedule: linear
       epsilon_schedule: linear
-    checkpoint_interval: 100000
+    checkpoint_interval: 500000
     network_settings:
-      normalize: true
+      normalize: false
       hidden_units: 256
       num_layers: 2
       vis_encode_type: simple
       memory: null
-      goal_conditioning_type: hyper
+      goal_conditioning_type: none
       deterministic: false
     reward_signals:
       extrinsic:
@@ -33,7 +33,7 @@ behaviors:
           num_layers: 2
           vis_encode_type: simple
           memory: null
-          goal_conditioning_type: hyper
+          goal_conditioning_type: none
           deterministic: false
     init_path: null
     keep_checkpoints: 5
@@ -64,22 +64,13 @@ engine_settings:
   capture_frame_rate: 60
   no_graphics: false
   no_graphics_monitor: false
-environment_parameters:
-  track_level:
-    curriculum:
-    - value:
-        sampler_type: constant
-        sampler_parameters:
-          seed: 1
-          value: 2.0
-      name: track_level
-      completion_criteria: null
+environment_parameters: null
 checkpoint_settings:
   run_id: ppo_complex_track_seed1
   initialize_from: null
   load_model: false
-  resume: true
-  force: false
+  resume: false
+  force: true
   train_model: false
   inference: false
   results_dir: results

@@ -1,53 +1,23 @@
 {
-    "track_level": {
-        "lesson_num": 0
-    },
     "CarAgent": {
         "checkpoints": [
             {
-                "steps": 99985,
-                "file_path": "results/ppo_complex_track_seed1/CarAgent/CarAgent-99985.onnx",
+                "steps": 8960,
+                "file_path": "results/ppo_complex_track_seed1/CarAgent/CarAgent-8960.onnx",
                 "reward": null,
-                "creation_time": 1783193103.664995,
+                "creation_time": 1783328355.512293,
                 "auxillary_file_paths": [
-                    "results/ppo_complex_track_seed1/CarAgent/CarAgent-99985.pt"
-                ]
-            },
-            {
-                "steps": 153489,
-                "file_path": "results/ppo_complex_track_seed1/CarAgent/CarAgent-153489.onnx",
-                "reward": null,
-                "creation_time": 1783193245.147497,
-                "auxillary_file_paths": [
-                    "results/ppo_complex_track_seed1/CarAgent/CarAgent-153489.pt"
-                ]
-            },
-            {
-                "steps": 199976,
-                "file_path": "results/ppo_complex_track_seed1/CarAgent/CarAgent-199976.onnx",
-                "reward": -1.931716764966647,
-                "creation_time": 1783201828.2192,
-                "auxillary_file_paths": [
-                    "results/ppo_complex_track_seed1/CarAgent/CarAgent-199976.pt"
-                ]
-            },
-            {
-                "steps": 211204,
-                "file_path": "results/ppo_complex_track_seed1/CarAgent/CarAgent-211204.onnx",
-                "reward": 30.35610386133194,
-                "creation_time": 1783201884.9448478,
-                "auxillary_file_paths": [
-                    "results/ppo_complex_track_seed1/CarAgent/CarAgent-211204.pt"
+                    "results/ppo_complex_track_seed1/CarAgent/CarAgent-8960.pt"
                 ]
             }
         ],
         "final_checkpoint": {
-            "steps": 211204,
+            "steps": 8960,
             "file_path": "results/ppo_complex_track_seed1/CarAgent.onnx",
-            "reward": 30.35610386133194,
-            "creation_time": 1783201884.9448478,
+            "reward": null,
+            "creation_time": 1783328355.512293,
             "auxillary_file_paths": [
-                "results/ppo_complex_track_seed1/CarAgent/CarAgent-211204.pt"
+                "results/ppo_complex_track_seed1/CarAgent/CarAgent-8960.pt"
             ]
         }
     },
