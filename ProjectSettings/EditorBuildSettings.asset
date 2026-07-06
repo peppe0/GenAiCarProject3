@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/ML-Agents/Examples/CarProject/Scenes/Scene_Base_Complex_Track.unity
+    path: Assets/ML-Agents/Examples/CarProject/Scenes/TrainingScenes/Scene_Base_Complex_Track.unity
     guid: d69165a80c3cb0f409a2ed7fbfafc10d
   m_configObjects:
     com.unity.ml-agents.settings: {fileID: 11400000, guid: 77c3bc045af1f4d4aa13d1400d775e12,

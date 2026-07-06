@@ -4545,6 +4545,11 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[1].nextCheckpointIndex
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8848142611464391194, guid: dbf1dddc01de547d19e84adac9ca7064,
+        type: 3}
+      propertyPath: isInsideTheCar
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
