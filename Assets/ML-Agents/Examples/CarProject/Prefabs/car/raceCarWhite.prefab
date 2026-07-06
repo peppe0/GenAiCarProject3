@@ -1244,7 +1244,7 @@ MonoBehaviour:
   currentGear: 0
   disableVehicle: 0
   handBrakeTrue: 0
-  isInsideTheCar: 0
+  isInsideTheCar: 1
 --- !u!114 &3985426481530344675
 MonoBehaviour:
   m_ObjectHideFlags: 0
