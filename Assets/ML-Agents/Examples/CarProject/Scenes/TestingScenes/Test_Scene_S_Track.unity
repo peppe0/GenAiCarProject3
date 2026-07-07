@@ -384,6 +384,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3552301669768002678, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -67.9
+      objectReference: {fileID: 0}
     - target: {fileID: 4471179815571740819, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -434,10 +439,35 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6096942725400452104, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -37.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154116895177588210, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 72.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 7154116895177588210, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 59.94
+      objectReference: {fileID: 0}
     - target: {fileID: 7246904363031588043, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: m_Name
       value: TestCurveSilverstone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8125497686551530403, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -36.96
+      objectReference: {fileID: 0}
+    - target: {fileID: 8544621061021956271, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 13.04
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
