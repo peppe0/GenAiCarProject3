@@ -1318,12 +1318,12 @@ MonoBehaviour:
   rotationNoiseDegrees: 8
   useFixedSpawn: 0
   fixedSpawnIndex: 3
-  checkpointReward: 1
+  checkpointReward: 3
   finishReward: 5
-  wallPenalty: -1
+  wallPenalty: -5
   timePenalty: -0.001
   wrongCheckpointPenalty: -0.5
-  speedTowardCheckpointFactor: 0.01
+  speedTowardCheckpointFactor: 0.001
   targetLapTime: 25
 --- !u!114 &2901809903607965363
 MonoBehaviour:
