@@ -4,37 +4,36 @@ behaviors:
     hyperparameters:
       batch_size: 1024
       buffer_size: 10240
-      learning_rate: 0.0003
-      beta: 0.005
+      learning_rate: 3.0e-4
+      beta: 5.0e-3
       epsilon: 0.2
       lambd: 0.95
       num_epoch: 3
-      shared_critic: false
       learning_rate_schedule: linear
-      beta_schedule: linear
-      epsilon_schedule: linear
     network_settings:
-      normalize: false
+      normalize: true
       hidden_units: 256
       num_layers: 2
       vis_encode_type: simple
-      memory: null
-      goal_conditioning_type: none
-      deterministic: false
     reward_signals:
       extrinsic:
         gamma: 0.99
         strength: 1.0
-        network_settings:
-          normalize: false
-          hidden_units: 128
-          num_layers: 2
-          vis_encode_type: simple
-          memory: null
-          goal_conditioning_type: none
-          deterministic: false
     keep_checkpoints: 5
+    checkpoint_interval: 200000
     max_steps: 2000000
     time_horizon: 128
     summary_freq: 10000
     threaded: true
+
+# --- NORMAL LEARNING ---
+# Se la scena usa un TrackManager che legge "track_level" per scegliere la pista,
+# SCOMMENTA le due righe sotto e imposta il livello del circuito complesso
+# (normal learning = livello FISSO, nessuna progressione).
+# Se invece stai lanciando direttamente sulla scena del circuito complesso
+# (nessun TrackManager), lascia commentato.
+# environment_parameters:
+#   track_level: 2.0
+
+torch_settings:
+  device: cpu

@@ -1244,7 +1244,7 @@ MonoBehaviour:
   currentGear: 0
   disableVehicle: 0
   handBrakeTrue: 0
-  isInsideTheCar: 1
+  isInsideTheCar: 0
 --- !u!114 &3985426481530344675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1296,6 +1296,10 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnPoints:
   - point: {fileID: 0}
     nextCheckpointIndex: 0
@@ -1304,13 +1308,15 @@ MonoBehaviour:
   - point: {fileID: 0}
     nextCheckpointIndex: 2
   - point: {fileID: 0}
-    nextCheckpointIndex: 3
+    nextCheckpointIndex: 4
   - point: {fileID: 0}
-    nextCheckpointIndex: 0
+    nextCheckpointIndex: 5
+  - point: {fileID: 0}
+    nextCheckpointIndex: 6
   lateralNoise: 1
   rotationNoiseDegrees: 8
   useFixedSpawn: 0
-  fixedSpawnIndex: 0
+  fixedSpawnIndex: 3
   checkpointReward: 1
   finishReward: 5
   wallPenalty: -1
