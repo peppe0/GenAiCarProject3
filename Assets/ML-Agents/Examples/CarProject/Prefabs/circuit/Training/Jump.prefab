@@ -2660,6 +2660,11 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 4301866752521100466}
     m_Modifications:
+    - target: {fileID: 2489944407118408654, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: isInsideTheCar
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4552609437254513649, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: m_Name
@@ -3375,27 +3380,27 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: fa0de29a68fc34532ba97c61cff9ed36,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.7071068
+      value: 0.7046114
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa0de29a68fc34532ba97c61cff9ed36,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.059353363
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa0de29a68fc34532ba97c61cff9ed36,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.70710677
+      value: 0.70461136
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa0de29a68fc34532ba97c61cff9ed36,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.059353355
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa0de29a68fc34532ba97c61cff9ed36,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      value: 9.63
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: fa0de29a68fc34532ba97c61cff9ed36,
         type: 3}

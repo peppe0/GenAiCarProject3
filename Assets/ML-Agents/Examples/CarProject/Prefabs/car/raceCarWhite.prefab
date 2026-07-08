@@ -1301,19 +1301,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnPoints:
   - point: {fileID: 0}
     nextCheckpointIndex: 0
   - point: {fileID: 0}
     nextCheckpointIndex: 1
   - point: {fileID: 0}
-    nextCheckpointIndex: 2
+    nextCheckpointIndex: 3
   - point: {fileID: 0}
-    nextCheckpointIndex: 4
+    nextCheckpointIndex: 7
   - point: {fileID: 0}
-    nextCheckpointIndex: 5
+    nextCheckpointIndex: 8
   - point: {fileID: 0}
-    nextCheckpointIndex: 6
+    nextCheckpointIndex: 9
   lateralNoise: 1
   rotationNoiseDegrees: 8
   useFixedSpawn: 0
@@ -1324,7 +1327,7 @@ MonoBehaviour:
   timePenalty: -0.001
   wrongCheckpointPenalty: -0.5
   speedTowardCheckpointFactor: 0.001
-  targetLapTime: 25
+  targetLapTime: 45
 --- !u!114 &2901809903607965363
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &58067219 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562930610937301550, guid: d7ccfaf9265e0c442b52da5033673ea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 947272235}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &86248926
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +222,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &121620559 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562930610937301550, guid: d7ccfaf9265e0c442b52da5033673ea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 559074983}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &190451036
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -764,6 +776,18 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 268628217}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &408196098 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562930610937301550, guid: d7ccfaf9265e0c442b52da5033673ea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 268628217}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &454281926 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562930610937301550, guid: d7ccfaf9265e0c442b52da5033673ea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 190451036}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &559074983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1037,6 +1061,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8423850039688088195, guid: d7ccfaf9265e0c442b52da5033673ea7,
     type: 3}
   m_PrefabInstance: {fileID: 559074983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &562018323 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562930610937301550, guid: d7ccfaf9265e0c442b52da5033673ea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 651196348}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &651196348
 PrefabInstance:
@@ -1586,6 +1616,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 687607748}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &918549319 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562930610937301550, guid: d7ccfaf9265e0c442b52da5033673ea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 687607748}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &947272235
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1919,6 +1955,12 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6988350156855357607, guid: d7ccfaf9265e0c442b52da5033673ea7,
     type: 3}
   m_PrefabInstance: {fileID: 725023611548535980}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1605422493 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7562930610937301550, guid: d7ccfaf9265e0c442b52da5033673ea7,
+    type: 3}
+  m_PrefabInstance: {fileID: 2109449658}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1695373767 stripped
 Transform:
@@ -2364,37 +2406,37 @@ PrefabInstance:
         type: 3}
       propertyPath: vehicles.Array.data[1]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 918549319}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[2]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 121620559}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[3]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 562018323}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[4]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1605422493}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[5]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 58067219}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[6]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 408196098}
     - target: {fileID: 114377021978642006, guid: b6883ab16065ce74589a2e2f0874e149,
         type: 3}
       propertyPath: vehicles.Array.data[7]
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 454281926}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
