@@ -1245,7 +1245,7 @@ MonoBehaviour:
   currentGear: 0
   disableVehicle: 0
   handBrakeTrue: 0
-  isInsideTheCar: 1
+  isInsideTheCar: 0
 --- !u!114 &3985426481530344675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1268,7 +1268,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 0}
+  m_Model: {fileID: 5022602860645237092, guid: 4b164c2c967fd4e278e94ba06077ebbc, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: CarAgent
@@ -1304,23 +1304,27 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   spawnPoints:
   - point: {fileID: 0}
     nextCheckpointIndex: 0
   - point: {fileID: 0}
     nextCheckpointIndex: 1
   - point: {fileID: 0}
-    nextCheckpointIndex: 3
-  - point: {fileID: 0}
-    nextCheckpointIndex: 7
+    nextCheckpointIndex: 4
   - point: {fileID: 0}
     nextCheckpointIndex: 8
   - point: {fileID: 0}
-    nextCheckpointIndex: 9
+    nextCheckpointIndex: 10
+  - point: {fileID: 0}
+    nextCheckpointIndex: 12
   lateralNoise: 1
   rotationNoiseDegrees: 8
   useFixedSpawn: 0
-  fixedSpawnIndex: 3
+  fixedSpawnIndex: 2
   checkpointReward: 3
   finishReward: 5
   wallPenalty: -5
@@ -1358,16 +1362,16 @@ MonoBehaviour:
   m_SensorName: wallSensor
   m_DetectableTags:
   - wall
-  m_RaysPerDirection: 11
-  m_MaxRayDegrees: 90
+  m_RaysPerDirection: 12
+  m_MaxRayDegrees: 120
   m_SphereCastRadius: 0.5
-  m_RayLength: 20
+  m_RayLength: 25
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
   m_ObservationStacks: 1
   m_AlternatingRayOrder: 1
-  m_UseBatchedRaycasts: 0
+  m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
@@ -1388,15 +1392,15 @@ MonoBehaviour:
   m_DetectableTags:
   - checkpoint
   m_RaysPerDirection: 5
-  m_MaxRayDegrees: 90
-  m_SphereCastRadius: 0.5
-  m_RayLength: 40
+  m_MaxRayDegrees: 100
+  m_SphereCastRadius: 1
+  m_RayLength: 50
   m_RayLayerMask:
     serializedVersion: 2
     m_Bits: 4294967291
   m_ObservationStacks: 1
   m_AlternatingRayOrder: 1
-  m_UseBatchedRaycasts: 0
+  m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
   m_StartVerticalOffset: 0
