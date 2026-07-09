@@ -1908,6 +1908,16 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
+      propertyPath: useFixedSpawn
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: checkpoints.Array.size
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
       propertyPath: checkpoints.Array.data[0]
       value: 
       objectReference: {fileID: 6682331446902097094}
