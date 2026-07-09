@@ -1043,6 +1043,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3dd5f4743d13d2d49828e40ac34bbb80, type: 3}
+--- !u!4 &1056844157184460316 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 94786338798299234, guid: 3dd5f4743d13d2d49828e40ac34bbb80,
+    type: 3}
+  m_PrefabInstance: {fileID: 1151256316229758590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &3051263221380009599 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2711824753489698817, guid: 3dd5f4743d13d2d49828e40ac34bbb80,
@@ -3320,18 +3326,27 @@ PrefabInstance:
     - target: {fileID: 2489944407118408654, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: isInsideTheCar
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3985426481530344675, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: fe960cec163ee41cea9af2ddae95a688,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4552609437254513649, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: m_Name
       value: raceCarWhite
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: csvFileName
+      value: cur_jump_ppo1.csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: checkpoints.Array.size
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
@@ -3423,6 +3438,16 @@ PrefabInstance:
       propertyPath: checkpoints.Array.data[17]
       value: 
       objectReference: {fileID: 2481082673197062377}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: checkpoints.Array.data[18]
+      value: 
+      objectReference: {fileID: 5145672636379251093}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: checkpoints.Array.data[19]
+      value: 
+      objectReference: {fileID: 1056844157184460316}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: spawnPoints.Array.data[0].point
@@ -4865,6 +4890,12 @@ PrefabInstance:
 --- !u!4 &4497916725299895865 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5705377002659071695, guid: 0baa0c59c44f54e6d9ae9c60cbdfdf69,
+    type: 3}
+  m_PrefabInstance: {fileID: 8162313945217276150}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &5145672636379251093 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3904414952109234531, guid: 0baa0c59c44f54e6d9ae9c60cbdfdf69,
     type: 3}
   m_PrefabInstance: {fileID: 8162313945217276150}
   m_PrefabAsset: {fileID: 0}
