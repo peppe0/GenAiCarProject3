@@ -316,6 +316,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8313571381588080626, guid: 12db7bab11def6f489154d7feb1f5e76,
+        type: 3}
+      propertyPath: m_TagString
+      value: road
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -553,6 +558,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6617581040025755928, guid: c66e47ffdaa2c0046a98bc9888f7106f,
+        type: 3}
+      propertyPath: m_TagString
+      value: road
       objectReference: {fileID: 0}
     - target: {fileID: 8865106591396769450, guid: c66e47ffdaa2c0046a98bc9888f7106f,
         type: 3}
