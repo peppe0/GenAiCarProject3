@@ -1,5 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
 using UnityEngine;
 using Unity.MLAgents;
 using Unity.MLAgents.Actuators;
@@ -36,6 +38,14 @@ public class CarAgent : Agent
     [Tooltip("Indice dello spawn point (nella lista 'Spawn Points') da usare quando 'Use Fixed Spawn' è attivo.")]
     public int fixedSpawnIndex = 0;
 
+    [Header("CSV Logging")]
+    [Tooltip("Cartella di output del CSV, relativa alla root del progetto (fuori da Assets). Creata automaticamente se non esiste.")]
+    public string logDirectory = "TrainingLogs";
+    [Tooltip("Nome del file CSV. Usane uno diverso per ogni circuito/esperimento per non mischiare i log.")]
+    public string csvFileName = "car_training_log.csv";
+    [Tooltip("Etichetta del circuito/scenario corrente, salvata in ogni riga: utile per confrontare più tracciati nello stesso CSV.")]
+    public string circuitLabel = "default";
+
 
 
     [Header("Reward Tuning")]
@@ -47,6 +57,12 @@ public class CarAgent : Agent
     public float speedTowardCheckpointFactor = 0.01f;
     [Tooltip("Tempo di riferimento (in secondi) per un giro 'decente'. Un lap più veloce di questo dà bonus (>1x), più lento dà malus (<1x), con clamp a 0.5x-2x.")]
     public float targetLapTime = 25f;
+
+    [Header("Launch Zone (pre-salto)")]
+    [Tooltip("Reward per unità di velocità in avanti mentre l'auto è nella zona di lancio prima del salto. Tienilo basso: incentivo accessorio, non l'obiettivo.")]
+    public float launchSpeedFactor = 0.02f;
+    // True mentre l'auto è dentro il trigger taggato 'launchZone' (rettilineo pre-salto).
+    private bool inLaunchZone = false;
 
 
     private int nextCheckpointIndex;
@@ -63,6 +79,15 @@ public class CarAgent : Agent
     private float lapStartTime;
     private int referenceIndex = -1; // checkpoint di riferimento, scelto a runtime
     private int checkpointsPassedThisEpisode = 0; // conteggio reale (per la metrica)
+
+    // Reward dell'episodio corrente, sommato a mano: GetCumulativeReward() si
+    // azzera già quando OnEpisodeBegin() gira (caso timeout), quindi non è
+    // affidabile in quel punto. Specchiamo ogni AddReward tramite AddTrackedReward.
+    private float episodeRewardSum = 0f;
+
+    private string csvFilePath;
+    private int episodeCounter = 0;
+    private static readonly object csvLock = new object();
 
 
     public override void Initialize()
@@ -104,6 +129,21 @@ public class CarAgent : Agent
         // salita, caduta), l'episodio scade dopo MaxStep step invece di congelare
         // il training. Se hai già impostato MaxStep nell'Inspector, viene rispettato.
         if (MaxStep == 0) MaxStep = 9000;
+
+        InitializeCsvLogging();
+    }
+
+    private void InitializeCsvLogging()
+    {
+        string dir = Path.Combine(Application.dataPath, "..", logDirectory);
+        Directory.CreateDirectory(dir);
+        csvFilePath = Path.Combine(dir, csvFileName);
+
+        if (!File.Exists(csvFilePath))
+        {
+            File.WriteAllText(csvFilePath,
+                "episode,timestamp,circuit,mode,success,wall_crash,timeout,checkpoints_passed,lap_time_s,episode_reward\n");
+        }
     }
 
    public override void OnEpisodeBegin()
@@ -170,6 +210,8 @@ public class CarAgent : Agent
     lapStarted = false;
     referenceIndex = -1;
     checkpointsPassedThisEpisode = 0;
+    episodeRewardSum = 0f;
+    inLaunchZone = false;
 }
 
     public override void CollectObservations(VectorSensor sensor)
@@ -221,9 +263,23 @@ public class CarAgent : Agent
         int idx = nextCheckpointIndex % checkpoints.Count;
         Vector3 dirToCheckpoint = (checkpoints[idx].position - transform.position).normalized;
         float velocityTowardCheckpoint = Vector3.Dot(m_AgentRb.velocity, dirToCheckpoint);
-        AddReward(speedTowardCheckpointFactor * velocityTowardCheckpoint);
+        AddTrackedReward(speedTowardCheckpointFactor * velocityTowardCheckpoint);
     }
-    AddReward(timePenalty);
+    AddTrackedReward(timePenalty);
+
+    if (inLaunchZone)
+    {
+        // Solo velocità in AVANTI (Dot con forward): non premia derapate o retromarcia.
+        // Incentiva ad arrivare lanciata sul rettilineo prima del salto.
+        float fwdSpeed = Vector3.Dot(m_AgentRb.velocity, transform.forward);
+        AddTrackedReward(launchSpeedFactor * Mathf.Max(0f, fwdSpeed));
+    }
+    }
+
+    private void AddTrackedReward(float reward)
+    {
+        AddReward(reward);
+        episodeRewardSum += reward;
     }
 
     public override void Heuristic(in ActionBuffers actionsOut)
@@ -244,6 +300,10 @@ public class CarAgent : Agent
     // Aggiungo la gestione delle collisioni con i Checkpoint o i muri
   private void OnTriggerEnter(Collider other)
 {
+    // Zona di lancio pre-salto: gestita PRIMA del filtro sui checkpoint,
+    // altrimenti il return sotto la ignorerebbe.
+    if (other.CompareTag("launchZone")) { inLaunchZone = true; return; }
+
     // Guardia: servono almeno 2 checkpoint (il riferimento + un intermedio).
     if (checkpoints == null || checkpoints.Count == 0) return;
     if (!other.CompareTag("checkpoint")) return;
@@ -260,7 +320,7 @@ public class CarAgent : Agent
         // reward: toccarne uno fuori sequenza qui viene penalizzato, non premiato.
         if (triggeredIndex != nextCheckpointIndex)
         {
-            AddReward(wrongCheckpointPenalty);
+            AddTrackedReward(wrongCheckpointPenalty);
             Debug.Log($"⚠️ Checkpoint {triggeredIndex} toccato prima di avviare il giro (atteso {nextCheckpointIndex}). Ignorato.");
             return;
         }
@@ -270,7 +330,7 @@ public class CarAgent : Agent
         lapStartTime = Time.time;
         nextCheckpointIndex = (triggeredIndex + 1) % checkpoints.Count;
         checkpointsPassedThisEpisode = 1; // il riferimento è il primo checkpoint superato
-        AddReward(checkpointReward);
+        AddTrackedReward(checkpointReward);
         Debug.Log($"🟢 Giro AVVIATO (riferimento = checkpoint {referenceIndex}).");
         return;
     }
@@ -284,9 +344,9 @@ public class CarAgent : Agent
             // → GIRO COMPLETO. Tempo pulito (loop intero), indipendente dallo spawn.
             float lapTime = Time.time - lapStartTime;
             float timeBonus = Mathf.Clamp(targetLapTime / lapTime, 0.5f, 2f);
-            AddReward(finishReward * timeBonus);
+            AddTrackedReward(finishReward * timeBonus);
 
-            LogEpisodeStats(true, false, false);
+            LogEpisodeStats(true, false, false, lapTime);
             Academy.Instance.StatsRecorder.Add("Car/LapTime", lapTime);
             Debug.Log($"🏁 Giro COMPLETATO in {lapTime:F2}s (bonus x{timeBonus:F2})!");
 
@@ -295,7 +355,7 @@ public class CarAgent : Agent
         }
         else
         {
-            AddReward(checkpointReward);
+            AddTrackedReward(checkpointReward);
             checkpointsPassedThisEpisode++;
             Debug.Log($"✅ Checkpoint {triggeredIndex} superato!");
             nextCheckpointIndex = (nextCheckpointIndex + 1) % checkpoints.Count;
@@ -305,10 +365,16 @@ public class CarAgent : Agent
     {
         // Ordine sbagliato (saltato o già passato): penalità, indice invariato.
         // Impedisce il reward hacking da scorciatoia: non si avanza saltando.
-        AddReward(wrongCheckpointPenalty);
+        AddTrackedReward(wrongCheckpointPenalty);
         Debug.Log($"⚠️ Checkpoint {triggeredIndex} fuori sequenza (atteso {nextCheckpointIndex}). Non conta.");
     }
 }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("launchZone")) inLaunchZone = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("wall"))
@@ -317,7 +383,7 @@ public class CarAgent : Agent
             LogEpisodeStats(false, true, false);
 
             // Penalità e fine episodio.
-            AddReward(wallPenalty);
+            AddTrackedReward(wallPenalty);
             Debug.Log("Hai sbattuto contro il muro! Episodio terminato.");
             episodeResolved = true;
             EndEpisode();
@@ -327,12 +393,34 @@ public class CarAgent : Agent
     // Registra le metriche di fine episodio come TASSI (0/1): così la media su
     // TensorBoard è direttamente la percentuale di successi/schianti/timeout.
     // Va chiamato una volta per OGNI episodio concluso, in qualunque modo finisca.
-    private void LogEpisodeStats(bool success, bool crash, bool timeout)
+    // StatsRecorder arriva a TensorBoard solo se un trainer Python (mlagents-learn)
+    // è connesso: il CSV invece è scritto sempre, anche in pura inferenza (.onnx).
+    private void LogEpisodeStats(bool success, bool crash, bool timeout, float lapTime = -1f)
     {
         var stats = Academy.Instance.StatsRecorder;
         stats.Add("Car/Success", success ? 1f : 0f);
         stats.Add("Car/WallCrash", crash ? 1f : 0f);
         stats.Add("Car/Timeout", timeout ? 1f : 0f);
         stats.Add("Car/CheckpointsPassed", checkpointsPassedThisEpisode);
+
+        episodeCounter++;
+        string mode = useFixedSpawn ? "test" : "train";
+        string line = string.Join(",",
+            episodeCounter.ToString(CultureInfo.InvariantCulture),
+            System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture),
+            circuitLabel,
+            mode,
+            success ? "1" : "0",
+            crash ? "1" : "0",
+            timeout ? "1" : "0",
+            checkpointsPassedThisEpisode.ToString(CultureInfo.InvariantCulture),
+            lapTime >= 0f ? lapTime.ToString("F3", CultureInfo.InvariantCulture) : "",
+            episodeRewardSum.ToString("F4", CultureInfo.InvariantCulture)
+        );
+
+        lock (csvLock)
+        {
+            File.AppendAllText(csvFilePath, line + "\n");
+        }
     }
 }

@@ -32,6 +32,8 @@ TagManager:
   - tile
   - checkpoint
   - finish
+  - road
+  - launchZone
   layers:
   - Default
   - TransparentFX
