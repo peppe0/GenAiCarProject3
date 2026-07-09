@@ -1155,16 +1155,15 @@ PrefabInstance:
       propertyPath: m_Name
       value: Jump
       objectReference: {fileID: 0}
-    - target: {fileID: 6959723058943814972, guid: d7ccfaf9265e0c442b52da5033673ea7,
+    - target: {fileID: 7988800538744392296, guid: d7ccfaf9265e0c442b52da5033673ea7,
         type: 3}
-      propertyPath: m_Model
-      value: 
-      objectReference: {fileID: 5022602860645237092, guid: c0415afafd0504c308c36e6be268f809,
+      propertyPath: m_LocalScale.x
+      value: 49.759445
+      objectReference: {fileID: 0}
+    - target: {fileID: 7988800538744392296, guid: d7ccfaf9265e0c442b52da5033673ea7,
         type: 3}
-    - target: {fileID: 8454659775404085777, guid: d7ccfaf9265e0c442b52da5033673ea7,
-        type: 3}
-      propertyPath: isInsideTheCar
-      value: 0
+      propertyPath: m_LocalPosition.x
+      value: -1.4
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

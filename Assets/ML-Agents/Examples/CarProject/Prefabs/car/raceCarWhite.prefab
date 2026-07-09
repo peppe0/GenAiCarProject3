@@ -609,6 +609,7 @@ GameObject:
   - component: {fileID: 2901809903607965363}
   - component: {fileID: 5679453950196336567}
   - component: {fileID: 2703516536828033799}
+  - component: {fileID: 3344690360672647435}
   m_Layer: 0
   m_Name: raceCarWhite
   m_TagString: Untagged
@@ -1137,7 +1138,7 @@ MonoBehaviour:
       helpToStraightenOut: 0.1
       downForce: 2
     _aerodynamics:
-      extraGravity: 1
+      extraGravity: 0
       feelingHeavy: 1
       downForceAngleFactor: 0.2
       verticalDownForce: 0.8
@@ -1268,7 +1269,7 @@ MonoBehaviour:
     VectorActionDescriptions: []
     VectorActionSpaceType: 1
     hasUpgradedBrainParametersWithActionSpec: 1
-  m_Model: {fileID: 5022602860645237092, guid: 4b164c2c967fd4e278e94ba06077ebbc, type: 3}
+  m_Model: {fileID: 5022602860645237092, guid: 7b1c8f338e3a34df88254317852ff0ae, type: 3}
   m_InferenceDevice: 0
   m_BehaviorType: 0
   m_BehaviorName: CarAgent
@@ -1292,8 +1293,12 @@ MonoBehaviour:
   agentParameters:
     maxStep: 0
   hasUpgradedFromAgentParameters: 1
-  MaxStep: 0
+  MaxStep: 5000
   checkpoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
@@ -1312,19 +1317,22 @@ MonoBehaviour:
   - point: {fileID: 0}
     nextCheckpointIndex: 0
   - point: {fileID: 0}
-    nextCheckpointIndex: 1
+    nextCheckpointIndex: 2
   - point: {fileID: 0}
-    nextCheckpointIndex: 4
-  - point: {fileID: 0}
-    nextCheckpointIndex: 8
+    nextCheckpointIndex: 6
   - point: {fileID: 0}
     nextCheckpointIndex: 10
   - point: {fileID: 0}
     nextCheckpointIndex: 12
+  - point: {fileID: 0}
+    nextCheckpointIndex: 15
   lateralNoise: 1
   rotationNoiseDegrees: 8
   useFixedSpawn: 0
   fixedSpawnIndex: 2
+  logDirectory: TrainingLogs
+  csvFileName: car_training_log.csv
+  circuitLabel: default
   checkpointReward: 3
   finishReward: 5
   wallPenalty: -5
@@ -1332,6 +1340,7 @@ MonoBehaviour:
   wrongCheckpointPenalty: -0.5
   speedTowardCheckpointFactor: 0.001
   targetLapTime: 45
+  launchSpeedFactor: 0.02
 --- !u!114 &2901809903607965363
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1372,10 +1381,10 @@ MonoBehaviour:
   m_ObservationStacks: 1
   m_AlternatingRayOrder: 1
   m_UseBatchedRaycasts: 1
-  rayHitColor: {r: 1, g: 0, b: 0, a: 1}
+  rayHitColor: {r: 0, g: 1, b: 0.08090758, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 0
+  m_StartVerticalOffset: 0.5
+  m_EndVerticalOffset: 0.5
 --- !u!114 &2703516536828033799
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,8 +1412,37 @@ MonoBehaviour:
   m_UseBatchedRaycasts: 1
   rayHitColor: {r: 1, g: 0, b: 0, a: 1}
   rayMissColor: {r: 1, g: 1, b: 1, a: 1}
-  m_StartVerticalOffset: 0
-  m_EndVerticalOffset: 0
+  m_StartVerticalOffset: 0.5
+  m_EndVerticalOffset: 0.5
+--- !u!114 &3344690360672647435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4552609437254513649}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bb6b867a41448888c1cd4f99643ad71, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_SensorName: roadSensor
+  m_DetectableTags:
+  - road
+  m_RaysPerDirection: 5
+  m_MaxRayDegrees: 45
+  m_SphereCastRadius: 0.5
+  m_RayLength: 15
+  m_RayLayerMask:
+    serializedVersion: 2
+    m_Bits: 4294967291
+  m_ObservationStacks: 1
+  m_AlternatingRayOrder: 1
+  m_UseBatchedRaycasts: 0
+  rayHitColor: {r: 0.0107040405, g: 0, b: 1, a: 1}
+  rayMissColor: {r: 1, g: 1, b: 1, a: 1}
+  m_StartVerticalOffset: 0.5
+  m_EndVerticalOffset: -1.5
 --- !u!1 &5092833338210013322
 GameObject:
   m_ObjectHideFlags: 0
