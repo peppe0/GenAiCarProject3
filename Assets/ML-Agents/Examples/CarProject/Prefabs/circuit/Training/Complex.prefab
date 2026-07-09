@@ -1237,6 +1237,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: cornerLargeWithRails
       objectReference: {fileID: 0}
+    - target: {fileID: 8361631093652128882, guid: b5be25f1a77e9c040bae71ce488ca567,
+        type: 3}
+      propertyPath: m_TagString
+      value: road
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1881,16 +1886,25 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 9079695944544833548}
     m_Modifications:
+    - target: {fileID: 2489944407118408654, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: isInsideTheCar
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3985426481530344675, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: a1a3753426bcd43f29c0bea7586c664d,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4552609437254513649, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: m_Name
       value: raceCarWhite
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: MaxStep
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
