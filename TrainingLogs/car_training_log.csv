@@ -712,3 +712,4 @@ episode,timestamp,circuit,mode,success,wall_crash,timeout,checkpoints_passed,lap
 5,2026-07-09 15:23:51,default,train,0,1,0,0,,-0.0092
 5,2026-07-09 15:23:51,default,train,0,1,0,0,,0.2896
 5,2026-07-09 15:23:51,default,train,0,1,0,1,,3.4085
+1,2026-07-09 16:59:42,default,train,1,0,0,14,35.540,68.2775

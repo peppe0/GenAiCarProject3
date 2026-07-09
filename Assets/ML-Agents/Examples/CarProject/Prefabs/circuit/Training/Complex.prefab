@@ -2016,6 +2016,31 @@ PrefabInstance:
       propertyPath: spawnPoints.Array.data[5].point
       value: 
       objectReference: {fileID: 7928079810283029127}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[1].nextCheckpointIndex
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[2].nextCheckpointIndex
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[3].nextCheckpointIndex
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[4].nextCheckpointIndex
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[5].nextCheckpointIndex
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 9043140895241346161, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -435,6 +435,11 @@ PrefabInstance:
       propertyPath: isInsideTheCar
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8117080975155184948, guid: 76b67d005d2114544ade646bae6efd09,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8947953214274760973, guid: 76b67d005d2114544ade646bae6efd09,
         type: 3}
       propertyPath: m_Name
