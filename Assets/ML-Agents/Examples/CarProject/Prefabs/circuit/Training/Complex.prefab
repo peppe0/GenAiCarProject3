@@ -1889,7 +1889,7 @@ PrefabInstance:
     - target: {fileID: 2489944407118408654, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: isInsideTheCar
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3985426481530344675, guid: 3352b897142eb413281e160597648628,
         type: 3}
