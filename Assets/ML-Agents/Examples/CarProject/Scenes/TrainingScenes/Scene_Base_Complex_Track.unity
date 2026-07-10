@@ -420,27 +420,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3570074903070989835, guid: 76b67d005d2114544ade646bae6efd09,
-        type: 3}
-      propertyPath: useFixedSpawn
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3570074903070989835, guid: 76b67d005d2114544ade646bae6efd09,
-        type: 3}
-      propertyPath: fixedSpawnIndex
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7306159513323354649, guid: 76b67d005d2114544ade646bae6efd09,
-        type: 3}
-      propertyPath: isInsideTheCar
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8117080975155184948, guid: 76b67d005d2114544ade646bae6efd09,
-        type: 3}
-      propertyPath: m_Model
-      value: 
-      objectReference: {fileID: 5022602860645237092, guid: 013a0f53d91adc64a9115c2a91e84c7b,
-        type: 3}
     - target: {fileID: 8947953214274760973, guid: 76b67d005d2114544ade646bae6efd09,
         type: 3}
       propertyPath: m_Name
