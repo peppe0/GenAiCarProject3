@@ -38,7 +38,7 @@ behaviors:
     init_path: null
     keep_checkpoints: 5
     even_checkpoints: false
-    max_steps: 2000000
+    max_steps: 400000
     time_horizon: 128
     summary_freq: 10000
     threaded: true
@@ -66,11 +66,11 @@ engine_settings:
   no_graphics_monitor: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: closed_v4_ppo1
+  run_id: cur_closed_ppo1_run2
   initialize_from: null
   load_model: false
   resume: false
-  force: true
+  force: false
   train_model: false
   inference: false
   results_dir: results

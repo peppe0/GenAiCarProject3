@@ -3326,13 +3326,13 @@ PrefabInstance:
     - target: {fileID: 2489944407118408654, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: isInsideTheCar
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3985426481530344675, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 7b983b0b25513494188d6aad8992776d,
+      objectReference: {fileID: 5022602860645237092, guid: 09577b0a2e9a3b845b52db7cdb048102,
         type: 3}
     - target: {fileID: 4552609437254513649, guid: 3352b897142eb413281e160597648628,
         type: 3}

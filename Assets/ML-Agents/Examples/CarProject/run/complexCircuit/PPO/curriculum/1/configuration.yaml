@@ -35,10 +35,10 @@ behaviors:
           memory: null
           goal_conditioning_type: hyper
           deterministic: false
-    init_path: results\closed_v4_ppo1\CarAgent\checkpoint.pt
+    init_path: results\cur_closed_ppo1_run2\CarAgent\checkpoint.pt
     keep_checkpoints: 5
     even_checkpoints: false
-    max_steps: 2000000
+    max_steps: 1000000
     time_horizon: 128
     summary_freq: 10000
     threaded: true
@@ -66,8 +66,8 @@ engine_settings:
   no_graphics_monitor: false
 environment_parameters: null
 checkpoint_settings:
-  run_id: cur_complex_corretto_ppo1_run2
-  initialize_from: closed_v4_ppo1
+  run_id: cur_complex_ppo1_run2
+  initialize_from: cur_closed_ppo1_run2
   load_model: false
   resume: false
   force: false
