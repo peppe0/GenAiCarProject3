@@ -439,10 +439,21 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7232382174914189485, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: 9b2bc9ccb9debb24fa738b3ad8765e51,
+        type: 3}
     - target: {fileID: 7246904363031588043, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: m_Name
       value: TestCurveSilverstone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8440069608904938763, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.907
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
