@@ -25,32 +25,5 @@ behaviors:
     time_horizon: 128
     summary_freq: 10000
     threaded: true
-
-# --- CURRICULUM LEARNING ---
-# RICHIEDE un TrackManager in scena che legga "track_level" e attivi la pista
-# corrispondente: 0 = semplice, 1 = intermedio, 2 = complesso.
-# La difficolta' avanza automaticamente quando la reward media supera "threshold".
-environment_parameters:
-  track_level:
-    curriculum:
-      - name: Semplice
-        completion_criteria:
-          measure: reward
-          behavior: CarAgent
-          signal_smoothing: true
-          min_lesson_length: 100
-          threshold: 15.0
-        value: 0.0
-      - name: Intermedio
-        completion_criteria:
-          measure: reward
-          behavior: CarAgent
-          signal_smoothing: true
-          min_lesson_length: 100
-          threshold: 15.0
-        value: 1.0
-      - name: Complesso
-        value: 2.0
-
 torch_settings:
   device: cpu

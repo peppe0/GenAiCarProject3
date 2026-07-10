@@ -384,6 +384,46 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 508990177767149860, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 11.29
+      objectReference: {fileID: 0}
+    - target: {fileID: 508990177767149860, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -232.56
+      objectReference: {fileID: 0}
+    - target: {fileID: 508990177767149860, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.54154116
+      objectReference: {fileID: 0}
+    - target: {fileID: 508990177767149860, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.8406743
+      objectReference: {fileID: 0}
+    - target: {fileID: 508990177767149860, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 114.423
+      objectReference: {fileID: 0}
+    - target: {fileID: 829388733828886407, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: fixedSpawnIndex
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 829388733828886407, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[5].nextCheckpointIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 829388733828886407, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: spawnPoints.Array.data[6].nextCheckpointIndex
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1414977868903399667, guid: 64479e7ab7e62ad419698f38dbdabbba,
         type: 3}
       propertyPath: m_LocalPosition.x
