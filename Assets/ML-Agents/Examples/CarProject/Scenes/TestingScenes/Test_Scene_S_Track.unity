@@ -384,10 +384,15 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2697739007210619794, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+    - target: {fileID: 2179699990140974850, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
-      propertyPath: circuitLabel
-      value: PPO_test_silverstone
+      propertyPath: m_LocalPosition.y
+      value: -0.5899999
+      objectReference: {fileID: 0}
+    - target: {fileID: 3254647569366299817, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.3
       objectReference: {fileID: 0}
     - target: {fileID: 4471179815571740819, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
@@ -439,21 +444,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7232382174914189485, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+    - target: {fileID: 5131267791107307374, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
-      propertyPath: m_Model
-      value: 
-      objectReference: {fileID: 5022602860645237092, guid: 9b2bc9ccb9debb24fa738b3ad8765e51,
-        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.81
+      objectReference: {fileID: 0}
     - target: {fileID: 7246904363031588043, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: m_Name
       value: TestCurveSilverstone
       objectReference: {fileID: 0}
-    - target: {fileID: 8440069608904938763, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+    - target: {fileID: 8904229391938298090, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.907
+      value: 3.2300003
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
