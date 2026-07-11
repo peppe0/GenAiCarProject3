@@ -21,8 +21,8 @@ behaviors:
       extrinsic:
         gamma: 0.99
         strength: 1.0
-    keep_checkpoints: 5
-    checkpoint_interval: 200000
+    keep_checkpoints: 60
+    checkpoint_interval: 100000
     max_steps: 5000000
     time_horizon: 128
     summary_freq: 10000
