@@ -450,6 +450,46 @@ PrefabInstance:
       propertyPath: m_Name
       value: TestCurveSilverstone
       objectReference: {fileID: 0}
+    - target: {fileID: 8072803935337872406, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 20.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072803935337872406, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072803935337872406, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -31.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072803935337872406, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: -0.27564755
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072803935337872406, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.007938134
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072803935337872406, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.9612259
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072803935337872406, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.00045634786
+      objectReference: {fileID: 0}
+    - target: {fileID: 8072803935337872406, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 212
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
