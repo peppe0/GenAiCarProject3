@@ -397,17 +397,22 @@ PrefabInstance:
     - target: {fileID: 508990177767149860, guid: 64479e7ab7e62ad419698f38dbdabbba,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.54154116
+      value: 0.18782331
       objectReference: {fileID: 0}
     - target: {fileID: 508990177767149860, guid: 64479e7ab7e62ad419698f38dbdabbba,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.8406743
+      value: 0.9822028
       objectReference: {fileID: 0}
     - target: {fileID: 508990177767149860, guid: 64479e7ab7e62ad419698f38dbdabbba,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 114.423
+      value: 158.348
+      objectReference: {fileID: 0}
+    - target: {fileID: 829388733828886407, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: useFixedSpawn
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 829388733828886407, guid: 64479e7ab7e62ad419698f38dbdabbba,
         type: 3}
@@ -479,6 +484,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: SuzukaCircuit
       objectReference: {fileID: 0}
+    - target: {fileID: 5380757813879731384, guid: 64479e7ab7e62ad419698f38dbdabbba,
+        type: 3}
+      propertyPath: m_Model
+      value: 
+      objectReference: {fileID: 5022602860645237092, guid: ec7ed9fce39d74d45a408abc3e7f2514,
+        type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
