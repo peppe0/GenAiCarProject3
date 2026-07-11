@@ -4596,6 +4596,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
+      propertyPath: fixedSpawnIndex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
       propertyPath: isClosedCircuit
       value: 1
       objectReference: {fileID: 0}
