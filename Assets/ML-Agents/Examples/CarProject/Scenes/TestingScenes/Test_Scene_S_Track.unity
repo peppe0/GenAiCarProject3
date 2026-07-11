@@ -122,6 +122,12 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!4 &738051434 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 7130439276344866462, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+    type: 3}
+  m_PrefabInstance: {fileID: 3249514867327983969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &890197066
 GameObject:
   m_ObjectHideFlags: 0
@@ -216,6 +222,12 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!4 &972922114 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3752026275865451649, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+    type: 3}
+  m_PrefabInstance: {fileID: 3249514867327983969}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1076247871 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7800128080571858879, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
@@ -543,6 +555,31 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1216826865270445282, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 3.5599997
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179699990140974850, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 104.49
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697739007210619794, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: checkpoints.Array.data[10]
+      value: 
+      objectReference: {fileID: 738051434}
+    - target: {fileID: 2697739007210619794, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: checkpoints.Array.data[11]
+      value: 
+      objectReference: {fileID: 972922114}
+    - target: {fileID: 4149967083063916970, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
+      objectReference: {fileID: 0}
     - target: {fileID: 4471179815571740819, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -593,6 +630,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5045862461421125373, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.14
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525355147576506871, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 151.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525355147576506871, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.61
+      objectReference: {fileID: 0}
+    - target: {fileID: 5525355147576506871, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -20.63
+      objectReference: {fileID: 0}
     - target: {fileID: 7232382174914189485, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: m_Model
@@ -603,6 +660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: TestCurveSilverstone
+      objectReference: {fileID: 0}
+    - target: {fileID: 8030531293596193717, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
