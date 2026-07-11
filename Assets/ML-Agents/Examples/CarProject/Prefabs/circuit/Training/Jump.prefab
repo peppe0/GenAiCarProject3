@@ -3332,8 +3332,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: d166db7ffc25c424da126695f9d33b35,
-        type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 4552609437254513649, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: m_Name
@@ -3343,6 +3342,16 @@ PrefabInstance:
         type: 3}
       propertyPath: csvFileName
       value: cur_jump_ppo1.csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: useFixedSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
+        type: 3}
+      propertyPath: fixedSpawnIndex
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}

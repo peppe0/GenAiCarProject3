@@ -104,3 +104,5 @@ episode,timestamp,circuit,mode,success,wall_crash,timeout,checkpoints_passed,lap
 1,2026-07-10 19:52:09,PPO_test_silverstone,train,0,1,0,12,,47.4764
 1,2026-07-10 19:53:12,PPO_test_silverstone,train,0,1,0,12,,47.0494
 1,2026-07-10 19:54:30,PPO_test_silverstone,train,0,1,0,12,,46.9317
+1,2026-07-11 10:36:55,default,test,0,1,0,14,,57.1614
+2,2026-07-11 10:37:20,default,test,0,1,0,9,,36.2968
