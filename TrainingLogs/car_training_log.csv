@@ -183,3 +183,13 @@ episode,timestamp,circuit,mode,success,wall_crash,timeout,checkpoints_passed,lap
 3,2026-07-11 16:13:48,PPO_test_silverstone,train,0,1,0,23,,91.8143
 1,2026-07-11 16:15:21,PPO_test_silverstone,train,0,1,0,12,,46.5755
 2,2026-07-11 16:16:30,PPO_test_silverstone,train,1,0,0,33,65.100,133.0910
+1,2026-07-11 17:05:31,PPO_test_silverstone,train,1,0,0,33,65.880,132.9011
+2,2026-07-11 17:06:40,PPO_test_silverstone,train,1,0,0,33,64.860,133.0367
+1,2026-07-11 17:18:37,PPO_test_silverstone,train,0,1,0,13,,51.6930
+1,2026-07-11 17:23:52,PPO_test_silverstone,train,0,1,0,11,,41.4837
+1,2026-07-11 17:26:20,PPO_test_silverstone,test,0,1,0,30,,115.3511
+2,2026-07-11 17:27:46,PPO_test_silverstone,test,0,1,0,33,,127.1411
+1,2026-07-11 17:29:41,PPO_test_silverstone,train,0,1,0,0,,-8.5008
+2,2026-07-11 17:29:46,PPO_test_silverstone,train,0,1,0,0,,-1.7762
+3,2026-07-11 17:29:49,PPO_test_silverstone,train,0,1,0,0,,0.2414
+4,2026-07-11 17:29:58,PPO_test_silverstone,train,0,1,0,6,,21.3000
