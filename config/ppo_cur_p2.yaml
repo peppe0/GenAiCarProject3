@@ -1,12 +1,4 @@
-# ==============================================================
-# CURRICULUM (transfer) - FASE 2 di 3 : circuito JUMP (intermedio)
-# Budget: 1.5M step (il contatore riparte da 0 con --initialize-from).
-# Lancio (dai pesi della fase 1):
-#   mlagents-learn config/ppo_cur_p2.yaml --run-id=cur_jump \
-#     --initialize-from=cur_closed --env=".../jumpBuild.app" \
-#     --no-graphics --num-envs=2 --seed=1
-# Iperparametri IDENTICI a ppo_normal.yaml (confronto equo). Cambia solo max_steps.
-# ==============================================================
+
 behaviors:
   CarAgent:
     trainer_type: ppo

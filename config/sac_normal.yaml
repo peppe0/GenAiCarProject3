@@ -28,9 +28,5 @@ behaviors:
     summary_freq: 10000
     threaded: true
 
-# Normal learning: se la scena usa un TrackManager con "track_level", scommenta:
-# environment_parameters:
-#   track_level: 2.0
-
 torch_settings:
   device: cpu

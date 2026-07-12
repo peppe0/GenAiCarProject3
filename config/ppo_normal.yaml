@@ -26,14 +26,7 @@ behaviors:
     summary_freq: 10000
     threaded: true
 
-# --- NORMAL LEARNING ---
-# Se la scena usa un TrackManager che legge "track_level" per scegliere la pista,
-# SCOMMENTA le due righe sotto e imposta il livello del circuito complesso
-# (normal learning = livello FISSO, nessuna progressione).
-# Se invece stai lanciando direttamente sulla scena del circuito complesso
-# (nessun TrackManager), lascia commentato.
-# environment_parameters:
-#   track_level: 2.0
+
 
 torch_settings:
   device: cpu

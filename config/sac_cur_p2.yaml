@@ -1,13 +1,4 @@
-# ==============================================================
-# CURRICULUM SAC (transfer) - FASE 2 di 3 : circuito JUMP (intermedio)
-# Budget: 1.5M step (il contatore riparte da 0 con --initialize-from).
-# Lancio (dai pesi della fase 1):
-#   mlagents-learn config/sac_cur_p2.yaml --run-id=sac_cur_jump \
-#     --initialize-from=sac_cur_closed --env=".../jumpTrackMac/build2.app" \
-#     --no-graphics --num-envs=2 --seed=1
-# Nota SAC: --initialize-from parte con replay buffer VUOTO; buffer_init_steps
-# raccoglie esperienza prima di aggiornare, per ammorbidire il cambio di fase.
-# ==============================================================
+
 behaviors:
   CarAgent:
     trainer_type: sac

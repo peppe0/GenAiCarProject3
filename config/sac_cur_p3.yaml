@@ -1,13 +1,4 @@
-# ==============================================================
-# CURRICULUM SAC (transfer) - FASE 3 di 3 : circuito COMPLEX (target)
-# Budget: 2M step. DEVE finire su questo circuito (lo stesso su cui SAC "normal"
-# si allena direttamente), per un confronto equo.
-# Totale curriculum SAC = 1.5M + 1.5M + 2M = 5M = budget di sac_normal.
-# Lancio (dai pesi della fase 2):
-#   mlagents-learn config/sac_cur_p3.yaml --run-id=sac_cur_complex \
-#     --initialize-from=sac_cur_jump --env=".../ComplexTrackMac/build2.app" \
-#     --no-graphics --num-envs=2 --seed=1
-# ==============================================================
+
 behaviors:
   CarAgent:
     trainer_type: sac

@@ -67,22 +67,14 @@ public class CarAgent : Agent
 
     private int nextCheckpointIndex;
 
-    // Stato per rilevare il TIMEOUT: episodio scaduto per MaxStep senza traguardo
-    // né schianto. Senza questo, quegli episodi non verrebbero contati nelle metriche.
     private bool episodeResolved = false;
     private bool isFirstEpisode = true;
 
-    // Cronometraggio "giro lanciato": il tempo parte quando la macchina incontra
-    // il PRIMO checkpoint (che diventa il riferimento di quel giro) e si chiude
-    // quando ci ritorna dopo aver percorso tutti gli altri in ordine.
     private bool lapStarted = false;
     private float lapStartTime;
     private int referenceIndex = -1; // checkpoint di riferimento, scelto a runtime
     private int checkpointsPassedThisEpisode = 0; // conteggio reale (per la metrica)
 
-    // Reward dell'episodio corrente, sommato a mano: GetCumulativeReward() si
-    // azzera già quando OnEpisodeBegin() gira (caso timeout), quindi non è
-    // affidabile in quel punto. Specchiamo ogni AddReward tramite AddTrackedReward.
     private float episodeRewardSum = 0f;
 
     private string csvFilePath;
@@ -125,9 +117,6 @@ public class CarAgent : Agent
         startingPosition = transform.localPosition;
         startingRotation = transform.localRotation;
 
-        // Evita episodi infiniti: se l'auto si blocca (ribaltata, incastrata in
-        // salita, caduta), l'episodio scade dopo MaxStep step invece di congelare
-        // il training. Se hai già impostato MaxStep nell'Inspector, viene rispettato.
         if (MaxStep == 0) MaxStep = 9000;
 
         InitializeCsvLogging();
@@ -148,9 +137,6 @@ public class CarAgent : Agent
 
    public override void OnEpisodeBegin()
 {
-    // Se l'episodio PRECEDENTE non è stato risolto (né traguardo né muro), è
-    // scaduto per MaxStep: lo registriamo come timeout, altrimenti sparirebbe
-    // dalle metriche e gonfierebbe il success rate.
     if (!isFirstEpisode && !episodeResolved)
     {
         LogEpisodeStats(false, false, true);
@@ -257,9 +243,6 @@ public class CarAgent : Agent
     
     if (checkpoints != null && checkpoints.Count > 0)
     {
-        // Reward denso: premia l'avvicinarsi al prossimo checkpoint atteso.
-        // Quando il giro sta per chiudersi, il prossimo atteso è il checkpoint di
-        // riferimento, quindi questo guida naturalmente anche il tratto finale.
         int idx = nextCheckpointIndex % checkpoints.Count;
         Vector3 dirToCheckpoint = (checkpoints[idx].position - transform.position).normalized;
         float velocityTowardCheckpoint = Vector3.Dot(m_AgentRb.velocity, dirToCheckpoint);
@@ -314,10 +297,6 @@ public class CarAgent : Agent
     // ---- PRIMO checkpoint incontrato: diventa il RIFERIMENTO e avvia il giro ----
     if (!lapStarted)
     {
-        // Il giro può partire SOLO toccando il checkpoint ATTESO (quello davanti,
-        // impostato dallo spawn). Altrimenti la macchina imparerebbe a fare
-        // retromarcia per agganciare un checkpoint dietro di sé e prendersi il
-        // reward: toccarne uno fuori sequenza qui viene penalizzato, non premiato.
         if (triggeredIndex != nextCheckpointIndex)
         {
             AddTrackedReward(wrongCheckpointPenalty);
@@ -340,8 +319,6 @@ public class CarAgent : Agent
     {
         if (triggeredIndex == referenceIndex)
         {
-            // Tornato al riferimento dopo aver percorso TUTTI gli altri in ordine
-            // → GIRO COMPLETO. Tempo pulito (loop intero), indipendente dallo spawn.
             float lapTime = Time.time - lapStartTime;
             float timeBonus = Mathf.Clamp(targetLapTime / lapTime, 0.5f, 2f);
             AddTrackedReward(finishReward * timeBonus);
@@ -363,8 +340,6 @@ public class CarAgent : Agent
     }
     else
     {
-        // Ordine sbagliato (saltato o già passato): penalità, indice invariato.
-        // Impedisce il reward hacking da scorciatoia: non si avanza saltando.
         AddTrackedReward(wrongCheckpointPenalty);
         Debug.Log($"⚠️ Checkpoint {triggeredIndex} fuori sequenza (atteso {nextCheckpointIndex}). Non conta.");
     }
@@ -389,12 +364,6 @@ public class CarAgent : Agent
             EndEpisode();
         }
     }
-
-    // Registra le metriche di fine episodio come TASSI (0/1): così la media su
-    // TensorBoard è direttamente la percentuale di successi/schianti/timeout.
-    // Va chiamato una volta per OGNI episodio concluso, in qualunque modo finisca.
-    // StatsRecorder arriva a TensorBoard solo se un trainer Python (mlagents-learn)
-    // è connesso: il CSV invece è scritto sempre, anche in pura inferenza (.onnx).
     private void LogEpisodeStats(bool success, bool crash, bool timeout, float lapTime = -1f)
     {
         var stats = Academy.Instance.StatsRecorder;

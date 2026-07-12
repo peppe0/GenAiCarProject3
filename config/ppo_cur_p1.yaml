@@ -1,11 +1,4 @@
-# ==============================================================
-# CURRICULUM (transfer) - FASE 1 di 3 : circuito CLOSED (semplice)
-# Budget: 1.5M step. Si ferma da solo a max_steps.
-# Lancio (da zero):
-#   mlagents-learn config/ppo_cur_p1.yaml --run-id=cur_closed \
-#     --env=".../closedBuild.app" --no-graphics --num-envs=2 --seed=1
-# Iperparametri IDENTICI a ppo_normal.yaml (confronto equo). Cambia solo max_steps.
-# ==============================================================
+
 behaviors:
   CarAgent:
     trainer_type: ppo

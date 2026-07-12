@@ -1,12 +1,3 @@
-# ==============================================================
-# CURRICULUM SAC (transfer) - FASE 1 di 3 : circuito CLOSED (semplice)
-# Budget: 1.5M step. Si ferma da solo a max_steps.
-# Lancio (da zero):
-#   mlagents-learn config/sac_cur_p1.yaml --run-id=sac_cur_closed \
-#     --env=".../closedTrack/build2.app" --no-graphics --num-envs=2 --seed=1
-# Iperparametri IDENTICI a sac_normal.yaml (confronto equo). Cambia solo max_steps
-# e buffer_init_steps (per ammorbidire l'avvio con replay buffer vuoto).
-# ==============================================================
 behaviors:
   CarAgent:
     trainer_type: sac
