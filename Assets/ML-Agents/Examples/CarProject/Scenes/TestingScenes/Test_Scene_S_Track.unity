@@ -386,8 +386,13 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2697739007210619794, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
+      propertyPath: csvFileName
+      value: test_marianna.csv
+      objectReference: {fileID: 0}
+    - target: {fileID: 2697739007210619794, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
+        type: 3}
       propertyPath: circuitLabel
-      value: ppo_curr_s2
+      value: SAC_curriculum_s3
       objectReference: {fileID: 0}
     - target: {fileID: 4471179815571740819, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
@@ -443,7 +448,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: 9b2bc9ccb9debb24fa738b3ad8765e51,
+      objectReference: {fileID: 5022602860645237092, guid: af0c22ac58945834d9567fe7e39557e7,
         type: 3}
     - target: {fileID: 7246904363031588043, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
