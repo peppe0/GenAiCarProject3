@@ -4577,7 +4577,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 5022602860645237092, guid: d166db7ffc25c424da126695f9d33b35,
+      objectReference: {fileID: 5022602860645237092, guid: 9b2bc9ccb9debb24fa738b3ad8765e51,
         type: 3}
     - target: {fileID: 4552609437254513649, guid: 3352b897142eb413281e160597648628,
         type: 3}
@@ -4597,17 +4597,17 @@ PrefabInstance:
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: circuitLabel
-      value: ppo_normal_s2
+      value: PPO_curriculum_s2_jump
       objectReference: {fileID: 0}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: useFixedSpawn
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
       propertyPath: fixedSpawnIndex
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8530321637586538460, guid: 3352b897142eb413281e160597648628,
         type: 3}
