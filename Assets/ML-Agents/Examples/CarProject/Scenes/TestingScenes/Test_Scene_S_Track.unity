@@ -397,7 +397,7 @@ PrefabInstance:
     - target: {fileID: 2697739007210619794, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: circuitLabel
-      value: PPO_normal_s3
+      value: SAC_normal_s3
       objectReference: {fileID: 0}
     - target: {fileID: 2697739007210619794, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
@@ -478,7 +478,8 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Model
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 5022602860645237092, guid: 40877eaf012ca1f47b8c236391f578f7,
+        type: 3}
     - target: {fileID: 7246904363031588043, guid: 5c0b9acda9c71154e8f0d8bf96ed6826,
         type: 3}
       propertyPath: m_Name
